@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#090909">
+  <title>HervianFolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="./assets/favicon_io/site.webmanifest">
+</head>
+
+<body>
+
+  <!-- ===== LANDING: Unified Single Background + 2 Grayscale Characters ===== -->
+  <div class="landing" id="landing">
+    <!-- Unified Panoramic Background: Black & White by default, Full Color on Hover -->
+    <div class="landing-bg landing-bg--bw" id="landingBgBw"></div>
+    <div class="landing-bg landing-bg--color" id="landingBgColor"></div>
+    <canvas class="landing-dust" id="landingDust"></canvas>
+    <div class="landing-overlay"></div>
+
+    <div class="landing-brand">HervianFolio</div>
+
+    <!-- 3D Carousel Stage with Side Navigation & Gesture Support -->
+    <div class="landing-stage" id="landingStage">
+      <!-- Floating Navigation Arrows (Church-style modern round controls) -->
+      <button class="carousel-nav carousel-nav--prev" id="carouselPrev" type="button" aria-label="Previous portfolio">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="carousel-viewport" id="carouselViewport">
+        <!-- Business Card -->
+        <div class="lcard lcard--business is-active" id="lcardBusiness" data-index="0">
+          <div class="lcard-target" id="targetBusiness" role="button" tabindex="0" aria-label="Business portfolio"
+            data-mode="business">
+            <div class="lcard-img-wrap">
+              <img class="lcard-img grey" src="./assets/business Abu Abu.png" alt="Business Abu Abu" aria-hidden="true">
+              <img class="lcard-img color" src="./assets/business.png" alt="Business Color" aria-hidden="true">
+            </div>
+            <div class="lcard-info">
+              <span class="lcard-title">Digital Marketing</span>
+              <span class="lcard-role">E-Commerce & Social Media</span>
+              <button class="lcard-enter" type="button" aria-label="Lihat Portofolio Bisnis">Lihat Portofolio</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technology Card -->
+        <div class="lcard lcard--technology is-next" id="lcardTechnology" data-index="1">
+          <div class="lcard-target" id="targetTechnology" role="button" tabindex="0" aria-label="Technology portfolio"
+            data-mode="technology">
+            <div class="lcard-img-wrap">
+              <img class="lcard-img grey" src="./assets/technology abu abu.png" alt="Technology Abu Abu"
+                aria-hidden="true">
+              <img class="lcard-img color" src="./assets/technology.png" alt="Technology Color" aria-hidden="true">
+            </div>
+            <div class="lcard-info">
+              <span class="lcard-title">Full Stack Developer</span>
+              <span class="lcard-role">Front End & Back End</span>
+              <button class="lcard-enter" type="button" aria-label="Lihat Portofolio Teknologi">Lihat
+                Portofolio</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-nav carousel-nav--next" id="carouselNext" type="button" aria-label="Next portfolio">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="transition" id="transition">
+    <div class="bar"></div>
+  </div>
+
+  <main class="portfolio" id="portfolio">
+    <nav class="portfolio-nav">
+      <button class="back-btn" id="backBtn" type="button">KEMBALI</button>
+      <div class="p-brand" style="font-size: 22px; position: absolute; left: 50%; transform: translateX(-50%);">
+        HervianFolio<span id="navMode" style="display:none">Business</span></div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" id="navDropdownToggle" type="button">
+          Menu
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="nav-dropdown-menu" id="navDropdownMenu">
+          <a class="nav-dropdown-link" href="#about">Tentang</a>
+          <a class="nav-dropdown-link" href="#skills">Keahlian</a>
+          <a class="nav-dropdown-link" href="#services">Layanan</a>
+          <a class="nav-dropdown-link" href="#projects">Proyek</a>
+          <a class="nav-dropdown-link" href="#journey">Perjalanan</a>
+          <a class="nav-dropdown-link" href="#contact">Kontak</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Ambient Background Layer: Dot Grid + Floating Orbs -->
+    <div class="pf-bg" aria-hidden="true">
+      <div class="pf-orb pf-orb-1"></div>
+      <div class="pf-orb pf-orb-2"></div>
+      <div class="pf-orb pf-orb-3"></div>
+    </div>
+
+    <!-- ===== 2.5D Hero Scene (Integrated at Top of Portfolio) ===== -->
+    <div class="intro" id="intro">
+      <div class="scene" id="scene">
+        <div class="bg-wrap" id="bgWrap">
+          <div class="bg business"></div>
+          <div class="bg technology"></div>
+        </div>
+        <div class="scene-light" id="sceneLight"></div>
+        <canvas class="dust-canvas" id="dustCanvas"></canvas>
+        <div class="intro-copy" id="introCopy">
+          <div class="kicker" id="introKicker">Business</div>
+          <h1 id="introTitle">DRIVING<br><span>BUSINESS</span>FORWARD.</h1>
+          <p id="introText">Turning real business problems into clean, working solutions that actually scale.</p>
+        </div>
+        <div class="character-wrap" id="characterWrap">
+          <img class="character business" src="./assets/business.png" alt="Business profile">
+          <img class="character technology" src="./assets/technology.png" alt="Technology profile">
+        </div>
+      </div>
+
+      <div class="scroll-cue" id="scrollCue" role="button" tabindex="0" aria-label="Scroll down to explore portfolio">
+        <span>Scroll to explore</span>
+        <div class="scroll-cue-arrow">↓</div>
+      </div>
+    </div>
+
+    <div class="portfolio-main">
+      <!-- 01: HERO TYPOGRAPHY -->
+      <section class="portfolio-hero">
+        <div class="sr">
+          <div class="hero-meta" id="heroMeta">01 — Business</div>
+          <h2 id="heroTitle">DRIVING<br><em>BUSINESS</em><br>FORWARD.</h2>
+        </div>
+        <div class="hero-side sr sr-d1">
+          <p id="heroCopy">Turning real business problems into clean, working solutions that actually scale.</p>
+          <div class="discipline"><span class="dot"></span><span id="heroDiscipline">Business</span></div>
+        </div>
+      </section>
+
+      <!-- 02: ABOUT ME -->
+      <section class="pf-section" id="about">
+        <div class="about-section">
+
+          <!-- Photo Column -->
+          <div class="about-photo-col sr sr-left">
+            <div class="about-photo-frame">
+              <span class="corner-tr"></span>
+              <span class="corner-bl"></span>
+              <div class="about-photo-inner">
+                <img src="./assets/gambar-tentangsaya.webp" alt="Foto Tentang Saya"
+                  style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <!-- Floating availability badge -->
+              <div class="about-badge">
+                <span class="badge-dot"></span>
+                <span>Open for work</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Column -->
+          <div class="about-content-col">
+            <div class="about-eyebrow sr">02 / About Me</div>
+            <h2 class="sr sr-d1" id="aboutTitle">Tentang<br>Saya.</h2>
+            <div class="about-body-text sr sr-d2">
+              <p id="aboutA">Halo, saya Alfonsus Hervian Hadi Winata, seorang lulusan S1 Sistem Informasi dengan
+                pengalaman komprehensif dalam pengelolaan bisnis online, digital marketing, content creation, dan
+                branding. Memiliki rekam jejak dalam mengelola marketplace secara mandiri, mulai dari strategi
+                pemasaran, analisis pasar, pembuatan konten promosi, hingga pelayanan pelanggan.</p>
+              <p id="aboutB">Berbekal kemampuan kuat dalam editing foto, video, desain multimedia, serta pengembangan
+                website untuk mendukung kebutuhan pemasaran digital yang efektif. Terbiasa bekerja secara mandiri maupun
+                di dalam tim, komunikatif, adaptif, dan memiliki antusiasme tinggi pada bidang bisnis kreatif serta
+                pengembangan media digital.</p>
+            </div>
+            <div class="about-stats sr sr-d3">
+              <div class="stat-card">
+                <span class="stat-num" id="stat1Num">7K+</span>
+                <span class="stat-label" id="stat1Label">Pengunjung/Bulan</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="stat2Num">652+</span>
+                <span class="stat-label" id="stat2Label">Total Transaksi</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="stat3Num">Rp70JT+</span>
+                <span class="stat-label" id="stat3Label">Total Penjualan</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 03: SKILLS -->
+      <section class="pf-section" id="skills">
+        <div class="section-heading sr">
+          <div class="pf-label">03 / Skills &amp; Expertise</div>
+          <h2>Keahlian<br>Saya.</h2>
+          <p class="sub">Perpaduan kemampuan teknis, kreativitas, dan strategi yang terus saya asah melalui berbagai
+            pengalaman nyata untuk memberikan solusi terbaik.</p>
+        </div>
+        <div class="skills-grid" id="skillGrid"></div>
+      </section>
+
+      <!-- 04: SERVICES -->
+      <section class="pf-section" id="services">
+        <div class="services-section align-right">
+          <div class="services-left sr sr-left">
+            <div class="pf-label">04 / My Services</div>
+            <h2 id="servicesTitle">Yang Saya<br>Tawarkan.</h2>
+            <p id="servicesSubtitle">Siap memberikan kontribusi terbaik melalui solusi digital yang fungsional, modern,
+              dan berorientasi pada target perusahaan.</p>
+          </div>
+          <div class="services-grid" id="servicesGrid"></div>
+        </div>
+      </section>
+
+      <!-- 05: PROJECTS -->
+      <section class="pf-section" id="projects">
+        <div class="section-heading sr">
+          <div class="pf-label">05 / Portfolio &amp; Projects</div>
+          <h2>Proyek &<br>Eksplorasi.</h2>
+          <p class="sub">Kumpulan proyek nyata dan studi kasus yang pernah saya kembangkan sebagai bentuk pembuktian
+            atas keterampilan serta dedikasi saya.</p>
+        </div>
+
+        <!-- Project Filters -->
+        <div class="projects-filters sr" id="projectsFilters"></div>
+
+        <div class="projects-carousel-wrap">
+          <div class="projects-grid" id="projectList"></div>
+        </div>
+        <div class="projects-dots" id="projectDots"></div>
+      </section>
+
+      <!-- 06: JOURNEY -->
+      <section class="pf-section" id="journey">
+        <div class="section-heading sr align-right">
+          <div class="pf-label">06 / My Journey</div>
+          <h2>Perjalanan<br>Saya.</h2>
+          <p class="sub">Perjalanan pendidikan, pengalaman, dan pencapaian yang membentuk saya hingga hari ini.</p>
+        </div>
+        <div class="journey-layout" id="timeline"></div>
+      </section>
+
+      <!-- 07: CONTACT -->
+      <section class="pf-section" id="contact" style="border-bottom: none;">
+        <div class="contact-layout">
+          <div class="contact-left sr sr-left">
+            <div class="pf-label">07 / Get In Touch</div>
+            <h2>Mari<br>Berkolaborasi.</h2>
+            <p id="contactCopy">Untuk website, Game, Aplikasi, atau peluang lainnya, jangan ragu untuk menghubungi saya
+            </p>
+          </div>
+          <div class="contact-right" id="contactLinks"></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>HervianFolio</span>
+        <span>© 2026</span>
+      </footer>
+    </div>
+  </main>
+
+  <script src="./script.js"></script>
+  <div class="cursor-ring" id="cursorRing"></div>
+</body>
+
+</html>

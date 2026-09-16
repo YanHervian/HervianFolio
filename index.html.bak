@@ -1,0 +1,3954 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090909">
+  <title>HervianFolio — Business × Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --fg: #ededed;
+      --muted: rgba(237, 237, 237, .62);
+      --line: rgba(255, 255, 255, .1);
+      --panel: rgba(14, 14, 16, .75);
+      --ease: cubic-bezier(.22, 1, .36, 1);
+      --slow: cubic-bezier(.16, 1, .3, 1);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Manrope, system-ui, sans-serif;
+      overflow-x: hidden
+    }
+
+    button,
+    a {
+      font: inherit;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    img {
+      display: block;
+      max-width: 100%
+    }
+
+    /* ---------- HYBRID POINTER AURA ---------- */
+    @media (hover: hover) and (pointer: fine) {
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 32px;
+        border: 1.5px solid rgba(255, 255, 255, .42);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate3d(-50%, -50%, 0);
+        will-change: transform, width, height, background-color, border-color;
+        box-shadow: 0 0 16px rgba(255, 255, 255, .12);
+        transition: width 260ms var(--ease), height 260ms var(--ease), border-color 260ms var(--ease), background-color 260ms var(--ease), opacity 250ms ease;
+        opacity: 0;
+      }
+
+      .cursor-ring.visible {
+        opacity: 1
+      }
+
+      .cursor-ring.hover {
+        width: 52px;
+        height: 52px;
+        border-color: rgba(255, 255, 255, .85);
+        background: rgba(255, 255, 255, .08);
+        backdrop-filter: blur(2px);
+        box-shadow: 0 0 24px rgba(255, 255, 255, .2);
+      }
+    }
+
+    @media (hover: none) or (pointer: coarse) {
+      .cursor-ring {
+        display: none !important
+      }
+    }
+
+    /* ---------- INTRO / 2.5D HERO SCENE (TOP OF PORTFOLIO) ---------- */
+    .intro {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      background: #060608;
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      perspective: 1500px;
+      transform-style: preserve-3d;
+      overflow: hidden;
+      background: #0a0a0c;
+    }
+
+    .scene::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 4;
+      background:
+        radial-gradient(circle at 50% 45%, transparent 0 25%, rgba(0, 0, 0, .17) 70%, rgba(0, 0, 0, .46)),
+        linear-gradient(180deg, rgba(0, 0, 0, .26), transparent 36%, rgba(0, 0, 0, .42));
+    }
+
+    .dust-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+    }
+
+    .scene-light {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(circle 420px at var(--light-x, 50%) var(--light-y, 45%), rgba(255, 255, 255, .18), transparent 60%),
+        radial-gradient(circle 900px at var(--light-x, 50%) var(--light-y, 45%), rgba(255, 255, 255, .06), transparent 75%);
+    }
+
+    .bg-wrap {
+      position: absolute;
+      inset: -6%;
+      pointer-events: none;
+      z-index: 1;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      will-change: transform, opacity, filter, clip-path;
+      transition: opacity 1050ms var(--slow), transform 1500ms var(--slow), filter 1050ms var(--slow), clip-path 1250ms var(--slow);
+    }
+
+    .bg.business {
+      background-image: url('./assets/business-bg.png');
+      opacity: 1
+    }
+
+    .bg.technology {
+      background-image: url('./assets/technology-bg.png');
+      opacity: 0
+    }
+
+    .bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0, 0, 0, .35), transparent 30%, transparent 70%, rgba(0, 0, 0, .28));
+    }
+
+    .character-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: grid;
+      place-items: end center;
+      transform-style: preserve-3d;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .character {
+      position: absolute;
+      bottom: -7%;
+      height: min(100%, 980px);
+      width: auto;
+      object-fit: contain;
+      object-position: center bottom;
+      filter: drop-shadow(var(--shadow-x, 0px) var(--shadow-y, 34px) 35px rgba(0, 0, 0, .5));
+      will-change: opacity, transform, filter;
+      transition: opacity 760ms var(--slow), transform 1100ms var(--slow), filter 760ms var(--slow);
+    }
+
+    .character.business {
+      opacity: 1;
+      transform: translate3d(0, 0, 100px) rotateY(0) rotateZ(0) scale(1)
+    }
+
+    .character.technology {
+      opacity: 0;
+      transform: translate3d(4%, 2%, 115px) rotateY(9deg) rotateZ(-.4deg) scale(.985)
+    }
+
+    .intro-copy {
+      position: absolute;
+      z-index: 5;
+      left: clamp(22px, 5vw, 76px);
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 520px;
+      text-shadow: 0 3px 28px rgba(0, 0, 0, .85), 0 1px 6px rgba(0, 0, 0, .9);
+      pointer-events: none;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .8);
+      margin-bottom: 17px;
+      font-weight: 600;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, .9);
+    }
+
+    .intro h1 {
+      font-size: clamp(52px, 7.5vw, 108px);
+      line-height: .84;
+      letter-spacing: -.075em;
+      margin: 0;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, .9);
+    }
+
+    .intro h1 span {
+      display: block;
+      color: rgba(255, 255, 255, .68);
+      text-shadow: 0 4px 24px rgba(0, 0, 0, .9);
+    }
+
+    .intro-copy p {
+      max-width: 430px;
+      margin: 25px 0 0;
+      color: rgba(255, 255, 255, .85);
+      font-size: 14px;
+      line-height: 1.7;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, .95);
+    }
+
+    .brand {
+      position: absolute;
+      z-index: 9;
+      left: 30px;
+      top: 24px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .brand span {
+      font-weight: 500;
+      opacity: .42
+    }
+
+    /* ---------- LANDING PAGE (Unified Single Background + 2 Grayscale Characters) ---------- */
+    .landing {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: #06060a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: opacity 800ms var(--slow), visibility 800ms;
+    }
+
+    .landing.leaving {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Single Unified Background Container with Smooth Transition */
+    .landing-bg {
+      position: absolute;
+      inset: 0;
+      background-size: 100% 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      z-index: 1;
+      transition: opacity 750ms cubic-bezier(.22, 1, .36, 1), transform 1.2s cubic-bezier(.22, 1, .36, 1), filter 800ms ease;
+      will-change: opacity, transform, filter;
+    }
+
+    /* Black & White Background (Default state) */
+    .landing-bg--bw {
+      background-image: url('./assets/landing-bg.png');
+      filter: brightness(0.88) contrast(1.08);
+      opacity: 1;
+    }
+
+    /* Full Color Background (Revealed directly around cursor or touch point via Spotlight Radial Mask) */
+    .landing-bg--color {
+      background-image: url('./assets/landing-bg-warna.png');
+      filter: brightness(0.98) contrast(1.04);
+      opacity: 0;
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(circle var(--spotlight-radius, 250px) at var(--cursor-x, -500px) var(--cursor-y, -500px),
+          #000 0%,
+          rgba(0, 0, 0, 0.94) 38%,
+          rgba(0, 0, 0, 0.45) 70%,
+          transparent 100%);
+      mask-image: radial-gradient(circle var(--spotlight-radius, 250px) at var(--cursor-x, -500px) var(--cursor-y, -500px),
+          #000 0%,
+          rgba(0, 0, 0, 0.94) 38%,
+          rgba(0, 0, 0, 0.45) 70%,
+          transparent 100%);
+      transition: opacity 450ms cubic-bezier(.22, 1, .36, 1), transform 1.2s cubic-bezier(.22, 1, .36, 1), filter 800ms ease;
+    }
+
+    @media (max-width: 768px) {
+      .landing-bg--color {
+        -webkit-mask-image: radial-gradient(circle var(--spotlight-radius, 200px) at var(--cursor-x, -500px) var(--cursor-y, -500px),
+            #000 0%,
+            rgba(0, 0, 0, 0.94) 40%,
+            rgba(0, 0, 0, 0.45) 72%,
+            transparent 100%);
+        mask-image: radial-gradient(circle var(--spotlight-radius, 200px) at var(--cursor-x, -500px) var(--cursor-y, -500px),
+            #000 0%,
+            rgba(0, 0, 0, 0.94) 40%,
+            rgba(0, 0, 0, 0.45) 72%,
+            transparent 100%);
+      }
+    }
+
+    /* Only when spotlight is ignited (mouse move, touch drag, or ambient mobile glow) */
+    .landing.has-spotlight .landing-bg--color {
+      opacity: 1;
+    }
+
+    /* Floating Dust Particle Canvas on Landing */
+    .landing-dust {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Ambient lighting and deep cinematic vignette overlay */
+    .landing-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.45) 85%, rgba(0, 0, 0, 0.75) 100%),
+        radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.55) 0%, transparent 70%);
+      transition: background 600ms ease;
+    }
+
+    .landing-brand {
+      position: absolute;
+      top: clamp(24px, 3.5vh, 36px);
+      left: clamp(24px, 3.5vw, 44px);
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      z-index: 10;
+      color: #ffffff;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.85);
+      user-select: none;
+    }
+
+    /* =========================================================
+       3D COVERFLOW CAROUSEL STAGE (MODERN LUXURY EDITION)
+       ========================================================= */
+    .landing-stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      perspective: 1400px;
+      perspective-origin: 50% 50%;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .carousel-viewport {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+      touch-action: pan-y pinch-zoom;
+    }
+
+    /* Floating Navigation Controls (High-Visibility Frosted Glassmorphism) */
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(52px, 5vw, 68px);
+      height: clamp(52px, 5vw, 68px);
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 60%, rgba(255, 255, 255, 0.03) 100%), rgba(20, 20, 28, 0.45);
+      border: 1.5px solid rgba(255, 255, 255, 0.38);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 40;
+      outline: none;
+      transition: transform 350ms cubic-bezier(.16, 1, .3, 1), background 250ms ease, border-color 250ms ease, color 200ms ease;
+    }
+
+    .carousel-nav svg {
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
+      transition: transform 300ms cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .carousel-nav--prev {
+      left: clamp(20px, 8vw, 140px);
+    }
+
+    .carousel-nav--next {
+      right: clamp(20px, 8vw, 140px);
+    }
+
+    .carousel-nav:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 240, 250, 0.88) 100%);
+      color: #09090b;
+      border-color: #ffffff;
+      transform: translateY(-50%) scale(1.12);
+    }
+
+    .carousel-nav--prev:hover svg {
+      transform: translateX(-2px);
+    }
+
+    .carousel-nav--next:hover svg {
+      transform: translateX(2px);
+    }
+
+    .carousel-nav:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    /* Single Focus Cinematic Cards */
+    .lcard {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: clamp(260px, 30vw, 420px);
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      outline: none;
+      pointer-events: none;
+      /* Remove transition for transform/opacity, let animations handle it */
+      will-change: transform, opacity, filter;
+      cursor: pointer;
+      opacity: 0;
+      z-index: 10;
+      transform: translateX(-50%) scale(0.92);
+      filter: brightness(0.65) blur(6px);
+    }
+
+    /* Active State for Initial Load (before animation) */
+    .lcard.is-active {
+      transform: translateX(-50%) scale(1);
+      z-index: 20;
+      opacity: 1;
+      filter: none;
+    }
+
+    /* Keyframe Animations */
+    @keyframes slideInRight {
+      0% {
+        transform: translateX(calc(-50% + 15vw)) scale(0.92);
+        opacity: 0;
+        filter: brightness(0.65) blur(6px);
+      }
+
+      100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+        filter: none;
+      }
+    }
+
+    @keyframes slideOutLeft {
+      0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+        filter: none;
+      }
+
+      100% {
+        transform: translateX(calc(-50% - 15vw)) scale(0.92);
+        opacity: 0;
+        filter: brightness(0.65) blur(6px);
+      }
+    }
+
+    @keyframes slideInLeft {
+      0% {
+        transform: translateX(calc(-50% - 15vw)) scale(0.92);
+        opacity: 0;
+        filter: brightness(0.65) blur(6px);
+      }
+
+      100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+        filter: none;
+      }
+    }
+
+    @keyframes slideOutRight {
+      0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+        filter: none;
+      }
+
+      100% {
+        transform: translateX(calc(-50% + 15vw)) scale(0.92);
+        opacity: 0;
+        filter: brightness(0.65) blur(6px);
+      }
+    }
+
+    .lcard.anim-in-next {
+      animation: slideInRight 1000ms cubic-bezier(.16, 1, .3, 1) forwards;
+      z-index: 20;
+    }
+
+    .lcard.anim-out-next {
+      animation: slideOutLeft 1000ms cubic-bezier(.16, 1, .3, 1) forwards;
+      z-index: 10;
+    }
+
+    .lcard.anim-in-prev {
+      animation: slideInLeft 1000ms cubic-bezier(.16, 1, .3, 1) forwards;
+      z-index: 20;
+    }
+
+    .lcard.anim-out-prev {
+      animation: slideOutRight 1000ms cubic-bezier(.16, 1, .3, 1) forwards;
+      z-index: 10;
+    }
+
+    /* Hover preview only affects active card now, handled elsewhere */
+
+    /* Target Click Hitbox */
+    .lcard-target {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Character Image Container */
+    .lcard-img-wrap {
+      position: absolute;
+      bottom: 8.5%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: clamp(440px, 76vh, 820px);
+      width: auto;
+      aspect-ratio: 2/3;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 3;
+      transition: transform 700ms cubic-bezier(.22, 1, .36, 1), filter 600ms ease;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    .lcard.is-active:hover .lcard-img-wrap {
+      transform: translateX(-50%) scale(1.04) translateY(-8px);
+    }
+
+    /* Character image layers: grey vs color */
+    .lcard-img {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      object-position: center bottom;
+      transition: opacity 600ms cubic-bezier(.22, 1, .36, 1), filter 600ms ease;
+      will-change: opacity, filter;
+      pointer-events: none;
+    }
+
+    /* Default Grayscale (Abu-abu) with enhanced depth and rim contrast */
+    .lcard-img.grey {
+      opacity: 1;
+      filter: grayscale(1) contrast(1.16) brightness(0.94) drop-shadow(0 18px 40px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 22px rgba(255, 255, 255, 0.07));
+    }
+
+    /* Color (Full vibrancy) */
+    .lcard-img.color {
+      opacity: 0;
+      filter: grayscale(0) drop-shadow(0 20px 50px rgba(0, 0, 0, 0.65));
+    }
+
+    /* Color behavior: Active (front) card is colored by default! Side cards remain grayscale */
+    .lcard.is-active .lcard-img.grey {
+      opacity: 0;
+    }
+
+    .lcard.is-active .lcard-img.color {
+      opacity: 1;
+    }
+
+    /* Side cards remain monokrom abu-abu */
+    .lcard:not(.is-active) .lcard-img.grey {
+      opacity: 1;
+    }
+
+    .lcard:not(.is-active) .lcard-img.color {
+      opacity: 0;
+    }
+
+    /* Modern Bottom Info Card (Glass badge with title and role) */
+    .lcard-info {
+      position: absolute;
+      bottom: clamp(28px, 5.2vh, 52px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      z-index: 5;
+      text-align: center;
+      pointer-events: auto;
+      cursor: pointer;
+      transition: transform 400ms var(--ease), opacity 400ms ease, background 400ms ease, border-color 400ms ease, box-shadow 400ms ease, padding 400ms ease;
+      background: linear-gradient(135deg, rgba(30, 30, 40, 0.4) 0%, rgba(10, 10, 15, 0.6) 100%);
+      backdrop-filter: blur(24px) saturate(150%);
+      -webkit-backdrop-filter: blur(24px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top: 1.5px solid rgba(255, 255, 255, 0.35);
+      border-left: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 28px;
+      padding: 10px 30px 12px;
+      min-width: 170px;
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    }
+
+    .lcard.is-active .lcard-info {
+      background: linear-gradient(135deg, rgba(40, 40, 55, 0.45) 0%, rgba(15, 15, 25, 0.65) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-top: 1.5px solid rgba(255, 255, 255, 0.45);
+      border-left: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.7), inset 0 2px 2px rgba(255, 255, 255, 0.2);
+      transform: translateX(-50%) translateY(-2px);
+      pointer-events: auto;
+    }
+
+    .lcard-title {
+      font-size: clamp(22px, 2.6vw, 32px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: #ffffff;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, .8);
+      line-height: 1.15;
+    }
+
+    .lcard-role {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 2px;
+      white-space: nowrap;
+    }
+
+    .lcard.is-active .lcard-role {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Enter CTA Button - Hidden until user clicks character card */
+    .lcard-enter {
+      margin-top: 0;
+      background: #ffffff;
+      color: #09090b;
+      border: none;
+      border-radius: 999px;
+      padding: 0 22px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity 300ms ease, max-height 350ms cubic-bezier(.22, 1, .36, 1), transform 350ms cubic-bezier(.22, 1, .36, 1), margin-top 300ms ease, box-shadow 300ms ease, background 200ms ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      white-space: nowrap;
+    }
+
+    .lcard-enter:hover {
+      background: #f0f0f5;
+      box-shadow: 0 0 22px rgba(255, 255, 255, 0.55), 0 0 10px rgba(255, 255, 255, 0.75);
+      transform: translateY(-2px);
+    }
+
+    /* Shown ONLY when card is explicitly clicked / selected */
+    .lcard.is-active.lcard--selected .lcard-enter,
+    .lcard.lcard--selected .lcard-enter {
+      opacity: 1;
+      max-height: 44px;
+      margin-top: 8px;
+      padding: 8px 22px;
+      transform: translateY(0);
+      pointer-events: auto;
+      box-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
+    }
+
+    /* Scroll Cue on Intro Hero */
+    .scroll-cue {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 300ms ease, transform 300ms var(--ease);
+      user-select: none;
+    }
+
+    .scroll-cue:hover {
+      color: #ffffff;
+      transform: translateX(-50%) translateY(-3px);
+    }
+
+    .scroll-cue-arrow {
+      animation: cue-bounce 1.8s ease-in-out infinite;
+      font-size: 14px;
+    }
+
+    @keyframes cue-bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(6px);
+      }
+    }
+
+
+    /* =========================================================
+       SEAMLESS CINEMATIC GLIDE TRANSITION (NO BLINK / NO FLASH)
+       ========================================================= */
+    .transition {
+      display: none !important;
+    }
+
+    .landing.landing--morphing {
+      pointer-events: none;
+      background: transparent !important;
+    }
+
+    .landing.landing--morphing .landing-stage {
+      overflow: visible;
+    }
+
+    .landing.landing--morphing .lcard {
+      overflow: visible;
+    }
+
+    .landing.landing--morphing .lcard-target {
+      overflow: visible !important;
+      pointer-events: none !important;
+    }
+
+    /* Background smooth zoom and dissolve to reveal the new room behind */
+    .landing.landing--morphing .landing-bg {
+      transform: scale(1.08) !important;
+      opacity: 0 !important;
+      filter: brightness(1.05) blur(3px) !important;
+      transition: transform 1600ms cubic-bezier(.22, 1, .36, 1), opacity 1300ms ease 150ms, filter 1300ms ease !important;
+    }
+
+    .landing.landing--morphing .landing-bg--color {
+      -webkit-mask-image: none !important;
+      mask-image: none !important;
+    }
+
+    .landing.landing--morphing .landing-overlay,
+    .landing.landing--morphing .landing-glow {
+      opacity: 0 !important;
+      transition: opacity 700ms ease !important;
+    }
+
+    /* UI labels dissolve quickly so focus is 100% on the character */
+    .landing.landing--morphing .landing-brand {
+      opacity: 0 !important;
+      transition: opacity 350ms ease !important;
+    }
+
+    .landing.landing--morphing .landing-divider {
+      opacity: 0 !important;
+      transition: opacity 350ms ease !important;
+    }
+
+    .landing.landing--morphing .lcard-info {
+      opacity: 0 !important;
+      transform: translateX(-50%) translateY(20px) !important;
+      transition: opacity 450ms ease, transform 450ms ease !important;
+    }
+
+    /* Active Morphing Card: The active carousel character glides smoothly and scales up at center */
+    .lcard.lcard--morphing {
+      z-index: 35 !important;
+      transform: translateX(-50%) translateZ(0) scale(1) rotateY(0deg) !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+
+    .lcard.lcard--morphing .lcard-img-wrap {
+      transform: translateX(-50%) scale(1.15) translateY(2%) !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transition: transform 750ms cubic-bezier(.16, 1, .3, 1), opacity 300ms ease, filter 300ms ease !important;
+    }
+
+    /* Color blooms fully during glide */
+    .lcard.lcard--morphing .lcard-img.grey {
+      opacity: 0 !important;
+      transition: opacity 300ms ease !important;
+    }
+
+    .lcard.lcard--morphing .lcard-img.color {
+      opacity: 1 !important;
+      filter: grayscale(0) drop-shadow(0 20px 50px rgba(0, 0, 0, 0.65)) !important;
+      transition: opacity 300ms ease, filter 300ms ease !important;
+    }
+
+    /* Handover moment: Landing character dissolves into glowing white energy as Hero emerges */
+    .landing.landing--handover .lcard.lcard--morphing .lcard-img-wrap {
+      opacity: 0 !important;
+      filter: brightness(1.7) blur(8px) !important;
+      transform: translateX(-50%) scale(1.22) translateY(0%) !important;
+      transition: opacity 500ms cubic-bezier(.22, 1, .36, 1), filter 500ms ease, transform 500ms cubic-bezier(.22, 1, .36, 1) !important;
+    }
+
+    /* Landing background dissolves softly at handover */
+    .landing.landing--handover .landing-bg {
+      opacity: 0 !important;
+      filter: blur(8px) brightness(1.1) !important;
+      transform: scale(1.12) !important;
+      transition: opacity 700ms ease, filter 700ms ease, transform 900ms ease !important;
+    }
+
+    /* Once transition is complete, landing overlay is hidden smoothly without pop */
+    .landing.leaving {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transition: opacity 600ms ease, visibility 600ms !important;
+    }
+
+    /* Unselected card dissolves and glides away */
+    .lcard.lcard--fading-out {
+      opacity: 0 !important;
+      filter: blur(8px) !important;
+      transition: opacity 700ms ease, filter 700ms ease !important;
+    }
+
+    .lcard.lcard--business.lcard--fading-out .lcard-img-wrap {
+      transform: translateX(calc(-50% - 25px)) scale(0.92) !important;
+      transition: transform 700ms cubic-bezier(.22, 1, .36, 1) !important;
+    }
+
+    .lcard.lcard--technology.lcard--fading-out .lcard-img-wrap {
+      transform: translateX(calc(-50% + 25px)) scale(0.92) !important;
+      transition: transform 700ms cubic-bezier(.22, 1, .36, 1) !important;
+    }
+
+    /* =========================================================
+       CINEMATIC PORTAL MORPHING: BACKGROUND ZOOM IN & CHARACTER IGNITE
+       ========================================================= */
+    body.portal-morphing .portfolio {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      pointer-events: auto !important;
+    }
+
+    /* New hero background zooms in dramatically from the depth */
+    body.portal-morphing #intro .bg-wrap {
+      animation: bg-portal-zoom 1500ms cubic-bezier(.16, 1, .3, 1) forwards !important;
+    }
+
+    @keyframes bg-portal-zoom {
+      0% {
+        transform: scale(1.26) translateZ(-60px);
+        filter: brightness(1.25) blur(10px);
+        opacity: 0.2;
+      }
+
+      35% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.045) translateZ(0);
+        filter: brightness(1) blur(0);
+        opacity: 1;
+      }
+    }
+
+    /* Pure radiant white glow theme for character ignite */
+    .scene {
+      --ignite-glow: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Hide hero characters during initial glide so there is ZERO overlap ("ketimpa") */
+    body.portal-morphing:not(.hero-ignited) #intro .character {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: translate3d(0, 0, 30px) scale(0.85) !important;
+      transition: none !important;
+    }
+
+    /* ONLY the active hero character bursts to life with radiant pure white zoom-in bloom at handover point */
+    body.hero-ignited .scene:not(.tech) #intro .character.business,
+    body.hero-ignited .scene.tech #intro .character.technology {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      animation: hero-ignite-zoom 1250ms cubic-bezier(.16, 1, .3, 1) forwards !important;
+    }
+
+    /* Inactive character is strictly hidden to prevent any ghosting or overlap */
+    body.hero-ignited .scene:not(.tech) #intro .character.technology,
+    body.hero-ignited .scene.tech #intro .character.business {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      display: none !important;
+      animation: none !important;
+    }
+
+    @keyframes hero-ignite-zoom {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 30px) scale(0.85);
+        filter: brightness(1.7) drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 14px #ffffff) drop-shadow(0 0 35px rgba(255, 255, 255, 1)) drop-shadow(0 0 75px rgba(255, 255, 255, 0.8));
+      }
+
+      35% {
+        opacity: 1;
+        transform: translate3d(0, 0, 75px) scale(0.96);
+        filter: brightness(1.3) drop-shadow(0 0 5px #ffffff) drop-shadow(0 0 14px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 35px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 65px rgba(255, 255, 255, 0.6));
+      }
+
+      70% {
+        opacity: 1;
+        transform: translate3d(0, 0, 95px) scale(0.99);
+        filter: brightness(1.1) drop-shadow(0 0 3px rgba(255, 255, 255, 0.75)) drop-shadow(0 0 18px rgba(255, 255, 255, 0.45));
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 100px) scale(1);
+        filter: brightness(1) drop-shadow(var(--shadow-x, 0px) var(--shadow-y, 34px) 35px rgba(0, 0, 0, .5));
+      }
+    }
+
+    /* Intro Copy and Nav Entrance during transition */
+    .intro-copy {
+      opacity: 0;
+      transition: opacity 900ms ease 400ms;
+    }
+
+    body.entered .intro-copy {
+      opacity: 1;
+    }
+
+    body:not(.entered) .portfolio-nav {
+      opacity: 0;
+      transform: translateY(-16px);
+      pointer-events: none;
+    }
+
+    body.entered .portfolio-nav {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 800ms ease 400ms, transform 800ms cubic-bezier(.22, 1, .36, 1) 400ms, background 350ms var(--ease), border-color 350ms var(--ease), padding 350ms var(--ease), backdrop-filter 350ms var(--ease), box-shadow 350ms ease;
+    }
+
+    /* Selected scene transforms: active character & background strictly isolated */
+    .scene.tech .bg.business {
+      opacity: 0 !important;
+      display: none !important;
+      visibility: hidden !important;
+      transform: translate3d(-5%, 0, 0) scale(1.12);
+      filter: blur(5px);
+    }
+
+    .scene.tech .bg.technology {
+      opacity: 1 !important;
+      display: block !important;
+      visibility: visible !important;
+      transform: translate3d(0, 0, 0) scale(1.045);
+    }
+
+    .scene.tech .character.business {
+      opacity: 0 !important;
+      display: none !important;
+      visibility: hidden !important;
+    }
+
+    .scene.tech .character.technology {
+      opacity: 1 !important;
+      display: block !important;
+      visibility: visible !important;
+      transform: translate3d(0, 0, 125px) rotateY(0) rotateZ(0) scale(1);
+    }
+
+    .scene:not(.tech) .bg.business {
+      opacity: 1 !important;
+      display: block !important;
+      visibility: visible !important;
+      transform: translate3d(0, 0, 0) scale(1.045);
+    }
+
+    .scene:not(.tech) .bg.technology {
+      opacity: 0 !important;
+      display: none !important;
+      visibility: hidden !important;
+      transform: translate3d(5%, 0, 0) scale(1.12);
+      filter: blur(5px);
+    }
+
+    .scene:not(.tech) .character.business {
+      opacity: 1 !important;
+      display: block !important;
+      visibility: visible !important;
+      transform: translate3d(0, 0, 100px) rotateY(0) rotateZ(0) scale(1);
+    }
+
+    .scene:not(.tech) .character.technology {
+      opacity: 0 !important;
+      display: none !important;
+      visibility: hidden !important;
+    }
+
+    /* ---------- PORTFOLIO (DARK LUXE THEME) ---------- */
+    .portfolio {
+      min-height: 100vh;
+      background-color: #08080a;
+      /* VISIBLE DOT GRID directly on portfolio container */
+      background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.16) 1.2px, transparent 1.2px),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 32px 32px, 128px 128px, 128px 128px;
+      background-position: 0 0, 0 0, 0 0;
+      color: #ededed;
+      opacity: 0;
+      transform: translateY(40px);
+      pointer-events: none;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body.entered .portfolio {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+      transition: opacity 900ms var(--slow), transform 1000ms var(--slow);
+    }
+
+    .portfolio-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px clamp(18px, 4vw, 56px);
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      transition: background 350ms var(--ease), border-color 350ms var(--ease), padding 350ms var(--ease), backdrop-filter 350ms var(--ease), box-shadow 350ms ease;
+    }
+
+    .portfolio-nav.scrolled {
+      padding: 14px clamp(18px, 4vw, 56px);
+    }
+
+    .p-brand {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #f5f5f5;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
+    }
+
+    .p-brand span {
+      opacity: .45;
+      font-weight: 500
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: color 250ms var(--ease), background 250ms var(--ease), border-color 250ms var(--ease), transform 250ms var(--ease);
+    }
+
+    .nav-link {
+      font-weight: 600;
+      color: rgba(255, 255, 255, .7);
+      padding: 9px 16px;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, .08);
+      border-color: rgba(255, 255, 255, .14);
+      transform: translateY(-1px);
+    }
+
+    .back-btn {
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .15);
+      padding: 9px 20px;
+      letter-spacing: .12em;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, .15);
+      border-color: rgba(255, 255, 255, .3);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       PORTFOLIO AMBIENT BACKGROUND — GLOW ORBS & VIGNETTE
+    ============================================================ */
+    .pf-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    /* Ambient glow orbs that give depth behind the dot grid */
+    .pf-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      opacity: 0.75;
+    }
+
+    .pf-orb-1 {
+      width: 750px;
+      height: 750px;
+      top: 500px;
+      left: -200px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, rgba(120, 140, 200, 0.03) 45%, transparent 70%);
+      animation: pf-orb-drift 22s ease-in-out infinite;
+    }
+
+    .pf-orb-2 {
+      width: 650px;
+      height: 650px;
+      top: 1400px;
+      right: -150px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, rgba(200, 160, 100, 0.025) 50%, transparent 70%);
+      animation: pf-orb-drift 28s ease-in-out infinite reverse 4s;
+    }
+
+    .pf-orb-3 {
+      width: 600px;
+      height: 600px;
+      top: 2400px;
+      left: 10%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.055) 0%, transparent 70%);
+      animation: pf-orb-drift 20s ease-in-out infinite 8s;
+    }
+
+    @keyframes pf-orb-drift {
+
+      0%,
+      100% {
+        transform: translate(0px, 0px) scale(1);
+      }
+
+      25% {
+        transform: translate(40px, -45px) scale(1.08);
+      }
+
+      50% {
+        transform: translate(-30px, 35px) scale(0.92);
+      }
+
+      75% {
+        transform: translate(25px, 50px) scale(1.04);
+      }
+    }
+
+    /* Ensure all portfolio content layers above the bg elements */
+    .intro,
+    .portfolio-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       PORTFOLIO MAIN — PREMIUM GLASSMORPHISM REDESIGN
+    ============================================================ */
+    .portfolio-main {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 72px);
+    }
+
+    /* --- SECTION BASE --- */
+    .pf-section {
+      padding: clamp(80px, 12vh, 140px) 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      position: relative;
+    }
+
+    .pf-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .38);
+      margin-bottom: 22px;
+    }
+
+    .pf-label::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: rgba(255, 255, 255, .35);
+    }
+
+    /* Big section heading block used in skills/projects/journey */
+    .section-heading {
+      margin-bottom: clamp(48px, 7vh, 80px);
+    }
+
+    .section-heading h2 {
+      margin: 0 0 18px;
+      font-size: clamp(60px, 9vw, 120px);
+      line-height: .82;
+      letter-spacing: -.08em;
+      font-weight: 800;
+      color: #f5f5f5;
+    }
+
+    .section-heading h2 em {
+      font-style: normal;
+      color: rgba(255, 255, 255, .28);
+    }
+
+    .section-heading .sub {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .5);
+      max-width: 520px;
+    }
+
+    /* --- HERO TYPOGRAPHY SECTION --- */
+    .portfolio-hero {
+      min-height: 82vh;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: end;
+      gap: 60px;
+      padding: 14vh 0 10vh;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .hero-meta {
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .38);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-meta::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: rgba(255, 255, 255, .3);
+    }
+
+    .portfolio-hero h2 {
+      margin: 0;
+      font-size: clamp(52px, 8.8vw, 142px);
+      line-height: 0.96;
+      letter-spacing: -.065em;
+      font-weight: 800;
+      color: #ffffff;
+      position: relative;
+      cursor: default;
+      user-select: none;
+      transition: letter-spacing 0.4s ease;
+    }
+    /* Seamless Infinite Looping Liquid Shimmer (Linear & Uninterrupted) */
+    .portfolio-hero h2 {
+      background: linear-gradient(
+        110deg,
+        #ffffff 0%,
+        #ffffff 20%,
+        rgba(255, 255, 255, 0.38) 35%,
+        #ffffff 50%,
+        #ffffff 70%,
+        rgba(255, 255, 255, 0.38) 85%,
+        #ffffff 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: hero-seamless-loop 4.5s linear infinite;
+    }
+
+    @keyframes hero-seamless-loop {
+      0% {
+        background-position: 0% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    /* Second line (em): Breathing cycle between Hollow Stroke and Solid White */
+    .portfolio-hero h2 em {
+      display: inline-block;
+      font-style: normal;
+      animation: stroke-to-solid-cycle 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes stroke-to-solid-cycle {
+      0%, 25% {
+        /* Mode 1: Hollow Outline Stroke (tembus pandang melihat dot grid) */
+        -webkit-text-stroke: 1.6px #ffffff;
+        -webkit-text-fill-color: transparent;
+      }
+      75%, 100% {
+        /* Mode 2: Solid White Bersih */
+        -webkit-text-stroke: 0px transparent;
+        -webkit-text-fill-color: #ffffff;
+      }
+    }
+
+    .hero-side {
+      max-width: 400px;
+      padding-bottom: 12px;
+    }
+
+    .hero-side p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin: 0 0 32px;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .discipline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .7);
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, .9);
+      display: inline-block;
+      animation: dot-pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes dot-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 8px rgba(255, 255, 255, .9);
+      }
+
+      50% {
+        box-shadow: 0 0 18px rgba(255, 255, 255, .4), 0 0 32px rgba(255, 255, 255, .15);
+      }
+    }
+
+    /* ---- ABOUT SECTION — NEW SPLIT LAYOUT WITH PHOTO ---- */
+    .about-section {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(48px, 7vw, 100px);
+      align-items: center;
+    }
+
+    /* Photo Column */
+    .about-photo-col {
+      position: relative;
+    }
+
+    .about-photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    /* Decorative corner brackets */
+    .about-photo-frame::before,
+    .about-photo-frame::after {
+      content: '';
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .about-photo-frame::before {
+      top: -8px;
+      left: -8px;
+      border-top: 2px solid rgba(255, 255, 255, .6);
+      border-left: 2px solid rgba(255, 255, 255, .6);
+    }
+
+    .about-photo-frame::after {
+      bottom: -8px;
+      right: -8px;
+      border-bottom: 2px solid rgba(255, 255, 255, .6);
+      border-right: 2px solid rgba(255, 255, 255, .6);
+    }
+
+    /* Extra corner brackets via inner spans */
+    .about-photo-frame .corner-tr,
+    .about-photo-frame .corner-bl {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .about-photo-frame .corner-tr {
+      top: -8px;
+      right: -8px;
+      border-top: 2px solid rgba(255, 255, 255, .25);
+      border-right: 2px solid rgba(255, 255, 255, .25);
+    }
+
+    .about-photo-frame .corner-bl {
+      bottom: -8px;
+      left: -8px;
+      border-bottom: 2px solid rgba(255, 255, 255, .25);
+      border-left: 2px solid rgba(255, 255, 255, .25);
+    }
+
+    .about-photo-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      backdrop-filter: blur(10px);
+    }
+
+    /* The actual photo / placeholder */
+    .about-photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* Placeholder state (when no photo yet) */
+    .about-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: linear-gradient(160deg, rgba(255, 255, 255, .06) 0%, rgba(255, 255, 255, .02) 100%);
+    }
+
+    .about-photo-placeholder .ph-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .08);
+      border: 1.5px solid rgba(255, 255, 255, .18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-photo-placeholder .ph-icon svg {
+      opacity: .5;
+    }
+
+    .about-photo-placeholder span {
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+    }
+
+    /* Subtle gradient overlay on bottom of photo */
+    .about-photo-inner::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 35%;
+      background: linear-gradient(to top, rgba(8, 8, 10, .7) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Floating badge on photo */
+    .about-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .about-badge .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 8px rgba(74, 222, 128, .8);
+      animation: dot-pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes badge-dot-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 6px rgba(74, 222, 128, .8);
+      }
+
+      50% {
+        box-shadow: 0 0 14px rgba(74, 222, 128, .5), 0 0 24px rgba(74, 222, 128, .2);
+      }
+    }
+
+    .about-badge span {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: rgba(255, 255, 255, .85);
+    }
+
+    /* Content Column */
+    .about-content-col {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .about-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .38);
+    }
+
+    .about-eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: rgba(255, 255, 255, .35);
+      flex-shrink: 0;
+    }
+
+    /* BIG section title */
+    .about-content-col h2 {
+      margin: 0;
+      font-size: clamp(48px, 7vw, 100px);
+      line-height: .85;
+      letter-spacing: -.07em;
+      color: #f5f5f5;
+      font-weight: 800;
+    }
+
+    .about-content-col h2 em {
+      font-style: normal;
+      color: rgba(255, 255, 255, .3);
+    }
+
+    .about-body-text {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .about-body-text p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, .58);
+    }
+
+    .about-right {
+      padding-top: 0;
+    }
+
+    .about-card {
+      background: rgba(255, 255, 255, .038);
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 20px;
+      padding: 36px 38px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+      transition: border-color 350ms var(--ease), transform 350ms var(--ease), box-shadow 350ms var(--ease);
+    }
+
+    .about-card:hover {
+      border-color: rgba(255, 255, 255, .18);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .45), 0 0 1px rgba(255, 255, 255, .12);
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .22), transparent);
+    }
+
+    .about-card p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, .65);
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 0;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, .035);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color 300ms var(--ease), transform 300ms var(--ease);
+    }
+
+    .stat-card:hover {
+      border-color: rgba(255, 255, 255, .2);
+      transform: translateY(-2px);
+    }
+
+    .stat-card .stat-num {
+      display: block;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -.05em;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-card .stat-label {
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    /* ---- SKILLS SECTION ---- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .skill-card {
+      position: relative;
+      padding: 30px 28px;
+      background: rgba(255, 255, 255, .028);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 18px;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: border-color 350ms var(--ease), background 350ms var(--ease), transform 350ms var(--ease), box-shadow 350ms var(--ease);
+      cursor: default;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(480px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(255, 255, 255, .07), transparent 60%);
+      opacity: 0;
+      transition: opacity 400ms;
+    }
+
+    .skill-card:hover {
+      background: rgba(255, 255, 255, .055);
+      border-color: rgba(255, 255, 255, .2);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .5), 0 0 1px rgba(255, 255, 255, .1);
+    }
+
+    .skill-card:hover::before {
+      opacity: 1;
+    }
+
+    .skill-card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+      transition: background 300ms, box-shadow 300ms;
+    }
+
+    .skill-card:hover .skill-card-icon {
+      background: rgba(255, 255, 255, .14);
+      box-shadow: 0 0 18px rgba(255, 255, 255, .1);
+    }
+
+    .skill-card-name {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #f0f0f0;
+      margin-bottom: 8px;
+    }
+
+    .skill-card-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .52);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .skill-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: rgba(255, 255, 255, .55);
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 999px;
+      padding: 4px 10px;
+      text-transform: uppercase;
+      transition: background 250ms, color 250ms;
+    }
+
+    .skill-card:hover .skill-tag {
+      background: rgba(255, 255, 255, .1);
+      color: rgba(255, 255, 255, .8);
+    }
+
+    /* ---- SERVICES SECTION ---- */
+    .services-section {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: clamp(40px, 6vw, 90px);
+      align-items: start;
+    }
+
+    .services-left h2 {
+      margin: 0;
+      font-size: clamp(52px, 7vw, 100px);
+      line-height: .85;
+      letter-spacing: -.07em;
+      color: #f5f5f5;
+      font-weight: 800;
+      padding-top: 8px;
+    }
+
+    .services-left p {
+      margin: 20px 0 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .service-card {
+      position: relative;
+      padding: 32px 30px;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      overflow: hidden;
+      transition: border-color 350ms var(--ease), transform 350ms var(--ease), box-shadow 350ms var(--ease);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
+      transition: opacity 300ms;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(255, 255, 255, .04), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .service-card:hover {
+      border-color: rgba(255, 255, 255, .22);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .55), 0 0 1px rgba(255, 255, 255, .15);
+    }
+
+    .service-num {
+      font-size: 11px;
+      letter-spacing: .18em;
+      color: rgba(255, 255, 255, .25);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .service-title {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #f2f2f2;
+      margin-bottom: 10px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .52);
+      margin-bottom: 18px;
+    }
+
+    .service-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .service-pill {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .55);
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 999px;
+      padding: 4px 11px;
+      letter-spacing: .06em;
+    }
+
+    /* ---- PROJECTS SECTION ---- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .025);
+      border: 1px solid rgba(255, 255, 255, .08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: border-color 350ms var(--ease), transform 350ms var(--ease), box-shadow 350ms var(--ease);
+      cursor: pointer;
+      group: true;
+    }
+
+    .project-card:hover {
+      border-color: rgba(255, 255, 255, .2);
+      transform: translateY(-4px);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, .6), 0 0 1px rgba(255, 255, 255, .12);
+    }
+
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: rgba(255, 255, 255, .04);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-thumb-inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .04) 0%, rgba(255, 255, 255, .01) 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 500ms var(--ease);
+      overflow: hidden;
+    }
+
+    .project-card:hover .project-thumb-inner {
+      transform: scale(1.04);
+    }
+
+    .project-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(9, 9, 11, .85));
+      z-index: 1;
+    }
+
+    .project-thumb-label {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 2;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .6);
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 999px;
+      padding: 4px 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    .project-thumb-num {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      z-index: 2;
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -.08em;
+      color: rgba(255, 255, 255, .07);
+      line-height: 1;
+    }
+
+    .project-mockup {
+      width: 70%;
+      max-width: 320px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-mockup-bars {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .project-mockup-bars span {
+      display: block;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .15);
+    }
+
+    .project-mockup-bars span:first-child {
+      width: 60%;
+    }
+
+    .project-mockup-bars span:nth-child(2) {
+      width: 90%;
+    }
+
+    .project-mockup-bars span:last-child {
+      width: 75%;
+    }
+
+    .project-body {
+      padding: 22px 24px 24px;
+    }
+
+    .project-body-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .project-name {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #f2f2f2;
+      line-height: 1.2;
+    }
+
+    .project-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: rgba(255, 255, 255, .6);
+      transition: background 250ms, transform 250ms, color 250ms;
+      flex-shrink: 0;
+    }
+
+    .project-card:hover .project-arrow {
+      background: rgba(255, 255, 255, .14);
+      color: #fff;
+      transform: translate(2px, -2px);
+    }
+
+    .project-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .5);
+      margin-bottom: 16px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .project-tag {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .45);
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 999px;
+      padding: 3px 10px;
+    }
+
+    /* ---- JOURNEY / TIMELINE SECTION ---- */
+    .journey-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .journey-card {
+      position: relative;
+      padding: 30px 28px;
+      background: rgba(255, 255, 255, .028);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 18px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow: hidden;
+      transition: border-color 350ms var(--ease), transform 350ms var(--ease), box-shadow 350ms var(--ease);
+    }
+
+    .journey-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
+    }
+
+    .journey-card:hover {
+      border-color: rgba(255, 255, 255, .2);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
+    }
+
+    .journey-card.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+      align-items: center;
+      padding: 36px 38px;
+    }
+
+    .journey-year {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+      margin-bottom: 10px;
+    }
+
+    .journey-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-bottom: 14px;
+    }
+
+    .journey-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .6);
+    }
+
+    .journey-card h4 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -.035em;
+      color: #f2f2f2;
+    }
+
+    .journey-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .54);
+    }
+
+    /* ---- CONTACT SECTION ---- */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 7vw, 100px);
+      align-items: center;
+    }
+
+    .contact-left h2 {
+      margin: 0 0 24px;
+      font-size: clamp(52px, 7.5vw, 110px);
+      line-height: .83;
+      letter-spacing: -.08em;
+      color: #f5f5f5;
+      font-weight: 800;
+    }
+
+    .contact-left p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .58);
+      max-width: 380px;
+      margin: 0;
+    }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 24px 26px;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      text-decoration: none;
+      color: #f0f0f0;
+      transition: border-color 300ms var(--ease), background 300ms, transform 300ms var(--ease), box-shadow 300ms;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .15), transparent);
+    }
+
+    .contact-link:hover {
+      border-color: rgba(255, 255, 255, .22);
+      background: rgba(255, 255, 255, .06);
+      transform: translateX(4px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, .4);
+    }
+
+    .contact-link-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      transition: background 300ms;
+    }
+
+    .contact-link:hover .contact-link-icon {
+      background: rgba(255, 255, 255, .14);
+    }
+
+    .contact-link-body {
+      flex: 1;
+    }
+
+    .contact-link-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      margin-bottom: 4px;
+    }
+
+    .contact-link-val {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .85);
+    }
+
+    .contact-link-arrow {
+      font-size: 14px;
+      color: rgba(255, 255, 255, .3);
+      transition: transform 250ms, color 250ms;
+    }
+
+    .contact-link:hover .contact-link-arrow {
+      transform: translate(3px, -3px);
+      color: rgba(255, 255, 255, .7);
+    }
+
+    /* ---- SECTION HEADING STYLE ---- */
+    .section-heading {
+      margin-bottom: clamp(40px, 6vh, 70px);
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: .9;
+      letter-spacing: -.07em;
+      color: #f5f5f5;
+      font-weight: 700;
+    }
+
+    .section-heading .sub {
+      margin: 16px 0 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, .5);
+      max-width: 500px;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 36px 0;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      border-top: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    /* ---- SCROLL REVEAL ---- */
+    .sr {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 800ms var(--slow), transform 800ms var(--slow);
+    }
+
+    .sr.sr-left {
+      transform: translateX(-28px);
+    }
+
+    .sr.sr-scale {
+      transform: translateY(20px) scale(.97);
+    }
+
+    .sr.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .sr-d1 {
+      transition-delay: 80ms;
+    }
+
+    .sr-d2 {
+      transition-delay: 160ms;
+    }
+
+    .sr-d3 {
+      transition-delay: 240ms;
+    }
+
+    .sr-d4 {
+      transition-delay: 320ms;
+    }
+
+    .sr-d5 {
+      transition-delay: 400ms;
+    }
+
+    .sr-d6 {
+      transition-delay: 480ms;
+    }
+
+    /* Legacy reveal for hero entrance animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    body.entered .reveal {
+      animation: reveal .9s var(--slow) forwards;
+    }
+
+    body.entered .r2 {
+      animation-delay: .12s;
+    }
+
+    .r3 {
+      animation-delay: .22s;
+    }
+
+    .r4 {
+      animation-delay: .32s;
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ---- BENTO MOUSE SPOTLIGHT (kept for mouse tracking cards) ---- */
+    .skill-card::before,
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(480px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(255, 255, 255, .065), transparent 60%);
+      opacity: 0;
+      transition: opacity 400ms;
+    }
+
+    .skill-card:hover::before,
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media(max-width:960px) {
+      .about-section {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .services-section {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .journey-card.featured {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .journey-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:850px) {
+      .intro-copy {
+        top: 14%;
+        transform: none;
+        max-width: 330px;
+      }
+
+      .intro h1 {
+        font-size: clamp(48px, 14vw, 78px);
+      }
+
+      .intro-copy p {
+        font-size: 12px;
+        max-width: 290px;
+      }
+
+      .character {
+        height: 76%;
+        bottom: 5%;
+      }
+
+      .landing-brand {
+        left: 50%;
+        top: 8%;
+        transform: translateX(-50%);
+        font-size: 24px;
+      }
+
+      .lcard-img-wrap {
+        height: clamp(380px, 62vh, 600px);
+        bottom: 15px;
+      }
+
+      .lcard-title {
+        font-size: clamp(16px, 5vw, 24px);
+      }
+
+      .lcard-info {
+        bottom: 12px;
+        min-width: 150px;
+        padding: 8px 24px 10px;
+      }
+
+      .lcard-enter {
+        bottom: 12px;
+      }
+
+      .carousel-nav--prev {
+        left: 10px;
+      }
+
+      .carousel-nav--next {
+        right: 10px;
+      }
+
+      .portfolio-hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding: 75px 0 70px;
+        gap: 40px;
+      }
+
+      .hero-side {
+        max-width: 520px;
+      }
+
+      .pf-section {
+        padding: 72px 0;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(max-width:520px) {
+      .brand {
+        left: 18px;
+        top: 18px;
+      }
+
+      .intro-copy {
+        left: 18px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-nav {
+        padding: 16px 18px;
+      }
+
+      .nav-link {
+        display: none;
+      }
+
+      .portfolio-main {
+        padding: 0 18px;
+      }
+
+      .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .footer {
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== LANDING: Unified Single Background + 2 Grayscale Characters ===== -->
+  <div class="landing" id="landing">
+    <!-- Unified Panoramic Background: Black & White by default, Full Color on Hover -->
+    <div class="landing-bg landing-bg--bw" id="landingBgBw"></div>
+    <div class="landing-bg landing-bg--color" id="landingBgColor"></div>
+    <canvas class="landing-dust" id="landingDust"></canvas>
+    <div class="landing-overlay"></div>
+
+    <div class="landing-brand">HervianFolio</div>
+
+    <!-- 3D Carousel Stage with Side Navigation & Gesture Support -->
+    <div class="landing-stage" id="landingStage">
+      <!-- Floating Navigation Arrows (Church-style modern round controls) -->
+      <button class="carousel-nav carousel-nav--prev" id="carouselPrev" type="button" aria-label="Previous portfolio">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="carousel-viewport" id="carouselViewport">
+        <!-- Business Card -->
+        <div class="lcard lcard--business is-active" id="lcardBusiness" data-index="0">
+          <div class="lcard-target" id="targetBusiness" role="button" tabindex="0" aria-label="Business portfolio"
+            data-mode="business">
+            <div class="lcard-img-wrap">
+              <img class="lcard-img grey" src="./assets/business Abu Abu.png" alt="Business Abu Abu" aria-hidden="true">
+              <img class="lcard-img color" src="./assets/business.png" alt="Business Color" aria-hidden="true">
+            </div>
+            <div class="lcard-info">
+              <span class="lcard-title">Business</span>
+              <span class="lcard-role">Strategy & Execution</span>
+              <button class="lcard-enter" type="button" aria-label="Lihat Portofolio Business">Lihat Portofolio
+                →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technology Card -->
+        <div class="lcard lcard--technology is-next" id="lcardTechnology" data-index="1">
+          <div class="lcard-target" id="targetTechnology" role="button" tabindex="0" aria-label="Technology portfolio"
+            data-mode="technology">
+            <div class="lcard-img-wrap">
+              <img class="lcard-img grey" src="./assets/technology abu abu.png" alt="Technology Abu Abu"
+                aria-hidden="true">
+              <img class="lcard-img color" src="./assets/technology.png" alt="Technology Color" aria-hidden="true">
+            </div>
+            <div class="lcard-info">
+              <span class="lcard-title">Technology</span>
+              <span class="lcard-role">Digital Products & Engineering</span>
+              <button class="lcard-enter" type="button" aria-label="Lihat Portofolio Technology">Lihat Portofolio
+                →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-nav carousel-nav--next" id="carouselNext" type="button" aria-label="Next portfolio">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="transition" id="transition">
+    <div class="bar"></div>
+  </div>
+
+  <main class="portfolio" id="portfolio">
+    <nav class="portfolio-nav">
+      <button class="back-btn" id="backBtn" type="button">KEMBALI</button>
+      <div class="p-brand" style="font-size: 22px; position: absolute; left: 50%; transform: translateX(-50%);">
+        HervianFolio<span id="navMode" style="display:none">Business</span></div>
+      <div class="nav-right">
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Ambient Background Layer: Dot Grid + Floating Orbs -->
+    <div class="pf-bg" aria-hidden="true">
+      <div class="pf-orb pf-orb-1"></div>
+      <div class="pf-orb pf-orb-2"></div>
+      <div class="pf-orb pf-orb-3"></div>
+    </div>
+
+    <!-- ===== 2.5D Hero Scene (Integrated at Top of Portfolio) ===== -->
+    <div class="intro" id="intro">
+      <div class="scene" id="scene">
+        <div class="bg-wrap" id="bgWrap">
+          <div class="bg business"></div>
+          <div class="bg technology"></div>
+        </div>
+        <div class="scene-light" id="sceneLight"></div>
+        <canvas class="dust-canvas" id="dustCanvas"></canvas>
+        <div class="intro-copy" id="introCopy">
+          <div class="kicker" id="introKicker">Business</div>
+          <h1 id="introTitle">BUILD<br><span>IDEAS INTO</span>REAL.</h1>
+          <p id="introText">Strategy, execution and digital products — where business thinking meets technology.</p>
+        </div>
+        <div class="character-wrap" id="characterWrap">
+          <img class="character business" src="./assets/business.png" alt="Business profile">
+          <img class="character technology" src="./assets/technology.png" alt="Technology profile">
+        </div>
+      </div>
+
+      <div class="scroll-cue" id="scrollCue" role="button" tabindex="0" aria-label="Scroll down to explore portfolio">
+        <span>Scroll to explore</span>
+        <div class="scroll-cue-arrow">↓</div>
+      </div>
+    </div>
+
+    <div class="portfolio-main">
+      <!-- 01: HERO TYPOGRAPHY -->
+      <section class="portfolio-hero">
+        <div class="reveal r1">
+          <div class="hero-meta" id="heroMeta">01 — Business</div>
+          <h2 id="heroTitle">BUSINESS<br><em>THINKING.</em><br>REAL IMPACT.</h2>
+        </div>
+        <div class="hero-side reveal r2">
+          <p id="heroCopy">Strategy, problem solving and execution focused on turning ideas into practical outcomes.</p>
+          <div class="discipline"><span class="dot"></span><span id="heroDiscipline">Business</span></div>
+        </div>
+      </section>
+
+      <!-- 02: ABOUT ME -->
+      <section class="pf-section" id="about">
+        <div class="about-section">
+
+          <!-- Photo Column -->
+          <div class="about-photo-col sr sr-left">
+            <div class="about-photo-frame">
+              <span class="corner-tr"></span>
+              <span class="corner-bl"></span>
+              <div class="about-photo-inner">
+                <!-- Ganti src di bawah dengan path foto Anda -->
+                <div class="about-photo-placeholder" id="aboutPhotoPlaceholder">
+                  <div class="ph-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)"
+                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                  <span>Your Photo Here</span>
+                </div>
+              </div>
+              <!-- Floating availability badge -->
+              <div class="about-badge">
+                <span class="badge-dot"></span>
+                <span>Open for work</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Column -->
+          <div class="about-content-col">
+            <div class="about-eyebrow sr">02 / About Me</div>
+            <h2 class="sr sr-d1" id="aboutTitle">Tentang<br>Saya.</h2>
+            <div class="about-body-text sr sr-d2">
+              <p id="aboutA">Saya menggabungkan pemikiran bisnis dengan pendekatan langsung dalam membangun ide. Saya
+                peduli terhadap kejelasan, hasil yang berguna, dan pekerjaan yang benar-benar dapat memajukan sebuah
+                proyek ke depan.</p>
+              <p id="aboutB">Sisi portofolio ini menyoroti pemikiran berorientasi bisnis: mengidentifikasi peluang,
+                menyusun ide, memahami pengguna, dan mengubah konsep menjadi tindakan yang jelas dan terukur.</p>
+            </div>
+            <div class="about-stats sr sr-d3">
+              <div class="stat-card">
+                <span class="stat-num" id="statProjects">12+</span>
+                <span class="stat-label">Proyek</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="statYears">3+</span>
+                <span class="stat-label">Tahun</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="statClients">8+</span>
+                <span class="stat-label">Klien</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 03: SKILLS -->
+      <section class="pf-section" id="skills">
+        <div class="section-heading sr">
+          <div class="pf-label">03 / Skills &amp; Expertise</div>
+          <h2>Keahlian<br>Saya.</h2>
+          <p class="sub">Kumpulan keahlian yang saya kembangkan melalui proyek nyata dan eksplorasi berkelanjutan.</p>
+        </div>
+        <div class="skills-grid" id="skillGrid"></div>
+      </section>
+
+      <!-- 04: SERVICES -->
+      <section class="pf-section" id="services">
+        <div class="services-section">
+          <div class="services-left sr sr-left">
+            <div class="pf-label">04 / My Services</div>
+            <h2 id="servicesTitle">Yang Saya<br>Tawarkan.</h2>
+            <p id="servicesSubtitle">Layanan yang saya tawarkan berdasarkan pengalaman dan keahlian nyata di lapangan.
+            </p>
+          </div>
+          <div class="services-grid" id="servicesGrid"></div>
+        </div>
+      </section>
+
+      <!-- 05: PROJECTS -->
+      <section class="pf-section" id="projects">
+        <div class="section-heading sr">
+          <div class="pf-label">05 / Portfolio &amp; Projects</div>
+          <h2>Proyek<br>Pilihan.</h2>
+          <p class="sub">Kumpulan proyek pilihan yang menunjukkan kemampuan dan cara saya mendekati suatu masalah.</p>
+        </div>
+        <div class="projects-grid" id="projectList"></div>
+      </section>
+
+      <!-- 06: JOURNEY -->
+      <section class="pf-section" id="journey">
+        <div class="section-heading sr">
+          <div class="pf-label">06 / My Journey</div>
+          <h2>Perjalanan<br>Saya.</h2>
+          <p class="sub">Perjalanan pendidikan, pengalaman, dan pencapaian yang membentuk saya hingga hari ini.</p>
+        </div>
+        <div class="journey-layout" id="timeline"></div>
+      </section>
+
+      <!-- 07: CONTACT -->
+      <section class="pf-section" id="contact" style="border-bottom: none;">
+        <div class="contact-layout">
+          <div class="contact-left sr sr-left">
+            <div class="pf-label">07 / Get In Touch</div>
+            <h2>Mari<br>Berkolaborasi.</h2>
+            <p id="contactCopy">Untuk kolaborasi, proyek, atau peluang lainnya, jangan ragu untuk menghubungi saya.</p>
+          </div>
+          <div class="contact-right" id="contactLinks"></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>HervianFolio</span>
+        <span id="footerMode">Business × Technology</span>
+        <span>© 2026</span>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const body = document.body;
+      const landing = document.getElementById('landing');
+      const lcards = [...document.querySelectorAll('.lcard')];
+      const ltargets = [...document.querySelectorAll('.lcard-target')];
+      const lcardBusiness = document.getElementById('lcardBusiness');
+      const lcardTechnology = document.getElementById('lcardTechnology');
+      const carouselPrev = document.getElementById('carouselPrev');
+      const carouselNext = document.getElementById('carouselNext');
+      const carouselViewport = document.getElementById('carouselViewport');
+      const intro = document.getElementById('intro');
+      const scene = document.getElementById('scene');
+      const bgWrap = document.getElementById('bgWrap');
+      const introCopy = document.getElementById('introCopy');
+      const sceneLight = document.getElementById('sceneLight');
+      const transition = document.getElementById('transition');
+      const characterWrap = document.getElementById('characterWrap');
+
+      const introKicker = document.getElementById('introKicker');
+      const introTitle = document.getElementById('introTitle');
+      const introText = document.getElementById('introText');
+
+      const navMode = document.getElementById('navMode');
+      const heroMeta = document.getElementById('heroMeta');
+      const heroTitle = document.getElementById('heroTitle');
+      const heroCopy = document.getElementById('heroCopy');
+      const heroDiscipline = document.getElementById('heroDiscipline');
+      const aboutTitle = document.getElementById('aboutTitle');
+      const aboutA = document.getElementById('aboutA');
+      const aboutB = document.getElementById('aboutB');
+      const skillGrid = document.getElementById('skillGrid');
+      const servicesGrid = document.getElementById('servicesGrid');
+      const projectList = document.getElementById('projectList');
+      const timeline = document.getElementById('timeline');
+      const contactCopy = document.getElementById('contactCopy');
+      const contactLinks = document.getElementById('contactLinks');
+      const footerMode = document.getElementById('footerMode');
+      const backBtn = document.getElementById('backBtn');
+
+      const data = {
+        business: {
+          index: '01 / BUSINESS',
+          kicker: 'Business',
+          introTitle: 'BUILD<br><span>IDEAS INTO</span>REAL.',
+          introText: 'Strategy, execution and digital products — where business thinking meets technology.',
+          heroMeta: '01 — Business',
+          heroTitle: 'BUSINESS<br><em>THINKING.</em><br>REAL IMPACT.',
+          heroCopy: 'Strategy, problem solving and execution focused on turning ideas into practical outcomes.',
+          aboutTitle: 'Tentang<br>Saya.',
+          aboutA: 'Saya menggabungkan pemikiran bisnis dengan pendekatan langsung dalam membangun ide. Saya peduli terhadap kejelasan, hasil yang berguna, dan pekerjaan yang benar-benar dapat memajukan sebuah proyek ke depan.',
+          aboutB: 'Sisi portofolio ini menyoroti pemikiran berorientasi bisnis: mengidentifikasi peluang, menyusun ide, memahami pengguna, dan mengubah konsep menjadi tindakan yang jelas dan terukur.',
+          contactCopy: 'Untuk kolaborasi bisnis, strategi proyek, atau peluang lainnya, jangan ragu untuk menghubungi saya.',
+          stats: { projects: '12+', years: '3+', clients: '8+' },
+          skills: [
+            { icon: '🎯', name: 'Strategy', desc: 'Problem framing, planning and structured decision making', tags: ['Planning', 'Analysis', 'KPI'] },
+            { icon: '📊', name: 'Business Analysis', desc: 'Turning information into practical direction and insight', tags: ['Research', 'Data', 'Reporting'] },
+            { icon: '💡', name: 'Product Thinking', desc: 'Connecting user needs with useful, measurable outcomes', tags: ['Roadmap', 'User Story', 'MVP'] },
+            { icon: '🗣️', name: 'Communication', desc: 'Clear presentation, documentation and collaboration', tags: ['Docs', 'Deck', 'Pitch'] },
+            { icon: '🔍', name: 'Problem Solving', desc: 'Breaking complex ideas into actionable and clear steps', tags: ['Framework', 'Root Cause', 'PDCA'] },
+            { icon: '🚀', name: 'Execution', desc: 'Moving concepts from planning stage into real, working output', tags: ['Delivery', 'Agile', 'PM'] }
+          ],
+          services: [
+            { num: '01', title: 'Business Strategy', desc: 'Perencanaan strategis yang berpusat pada tujuan bisnis yang jelas dan terukur.', pills: ['Market Research', 'Competitive Analysis', 'Goal Setting'] },
+            { num: '02', title: 'Product Planning', desc: 'Menyusun roadmap produk dari ideasi hingga eksekusi yang berdampak nyata.', pills: ['Roadmapping', 'User Story', 'Feature Scoping'] },
+            { num: '03', title: 'Project Management', desc: 'Mengelola proyek dari awal hingga akhir dengan metodologi yang adaptif.', pills: ['Agile', 'Scrum', 'Timeline'] },
+            { num: '04', title: 'Documentation', desc: 'Menghasilkan dokumentasi bisnis yang terstruktur, jelas, dan mudah dipahami.', pills: ['SOP', 'Report', 'Proposal'] }
+          ],
+          projects: [
+            { num: '01', name: 'Business Strategy Deck', desc: 'Dokumen strategi bisnis lengkap mulai dari analisis pasar hingga perencanaan eksekusi selama 12 bulan.', tags: ['Strategy', 'Presentation', 'Business'], type: 'Business' },
+            { num: '02', name: 'Product Roadmap Design', desc: 'Penyusunan roadmap produk digital dengan framework prioritisasi berbasis dampak dan usaha.', tags: ['Product', 'Roadmap', 'Planning'], type: 'Business' },
+            { num: '03', name: 'Market Research Report', desc: 'Laporan riset pasar komprehensif mencakup segmentasi, kompetitor, dan peluang pertumbuhan.', tags: ['Research', 'Analysis', 'Report'], type: 'Business' },
+            { num: '04', name: 'Project Documentation', desc: 'Sistem dokumentasi terstruktur untuk proyek tim lintas departemen dengan standar internasional.', tags: ['Documentation', 'SOP', 'Team'], type: 'Business' }
+          ],
+          journey: [
+            { year: '2026', badge: 'Sekarang', title: 'Business × Technology', desc: 'Mengembangkan identitas portofolio hybrid yang menghubungkan strategi dengan eksekusi digital secara nyata.', featured: true },
+            { year: '2025', badge: 'Pengalaman', title: 'Project Building', desc: 'Mengubah ide menjadi situs web praktis, prototipe, dan konsep yang terdokumentasi dengan baik.' },
+            { year: '2024', badge: 'Pendidikan', title: 'Eksplorasi Awal', desc: 'Berkembang dari eksperimen teknis ke pemikiran produk dan bisnis yang lebih luas dan mendalam.' },
+            { year: 'NEXT', badge: 'Goals', title: 'Chapter Berikutnya', desc: 'Terus menyempurnakan cara ide direncanakan, dibangun, dan dipresentasikan secara profesional.' }
+          ],
+          contacts: [
+            { icon: '✉️', label: 'Email', val: 'hervian@example.com', href: 'mailto:hervian@example.com' },
+            { icon: '💼', label: 'LinkedIn', val: 'linkedin.com/in/hervian', href: '#' },
+            { icon: '🐙', label: 'GitHub', val: 'github.com/hervian', href: '#' }
+          ]
+        },
+        technology: {
+          index: '02 / TECHNOLOGY',
+          kicker: 'Technology',
+          introTitle: 'BUILD<br><span>THE DIGITAL</span>REAL.',
+          introText: 'Modern interfaces, practical engineering and digital products built with a hands-on mindset.',
+          heroMeta: '02 — Technology',
+          heroTitle: 'TECHNOLOGY<br><em>BUILT WELL.</em><br>MADE REAL.',
+          heroCopy: 'Building modern digital experiences with a focus on clarity, performance and practical execution.',
+          aboutTitle: 'Tentang<br>Saya.',
+          aboutA: 'Saya menikmati proses mengubah konsep menjadi pengalaman digital yang berfungsi nyata — mulai dari antarmuka yang dilihat pengguna hingga logika yang membuat produk benar-benar berguna.',
+          aboutB: 'Sisi portofolio ini berfokus pada pengembangan web, UI/UX, pengalaman interaktif, dan alat praktis yang digunakan untuk mengubah sebuah ide menjadi sesuatu yang dapat benar-benar digunakan orang.',
+          contactCopy: 'Untuk website, produk digital, kolaborasi teknis, atau peluang lainnya, jangan ragu untuk menghubungi saya.',
+          stats: { projects: '15+', years: '3+', clients: '10+' },
+          skills: [
+            { icon: '🎨', name: 'Frontend Dev', desc: 'HTML, CSS, JavaScript dan antarmuka responsif yang bersih dan performan', tags: ['HTML', 'CSS', 'JavaScript'] },
+            { icon: '⚛️', name: 'React / Next.js', desc: 'Pengembangan web berbasis komponen modern dan skalabel', tags: ['React', 'Next.js', 'TypeScript'] },
+            { icon: '✏️', name: 'UI / UX Design', desc: 'Antarmuka bersih, hierarki visual, dan desain interaksi yang intuitif', tags: ['Figma', 'Prototype', 'Wireframe'] },
+            { icon: '🚀', name: 'Deployment', desc: 'Alur kerja Vercel dan Cloudflare untuk deployment yang cepat dan andal', tags: ['Vercel', 'Cloudflare', 'CI/CD'] },
+            { icon: '🎭', name: 'Interactive Web', desc: 'Motion, transisi, dan antarmuka imersif yang memukau pengguna', tags: ['GSAP', 'Three.js', 'CSS Animation'] },
+            { icon: '⚡', name: 'Performance', desc: 'Implementasi ringan, responsif, dan praktis untuk pengalaman terbaik', tags: ['Lighthouse', 'Lazy Load', 'PWA'] }
+          ],
+          services: [
+            { num: '01', title: 'Web Development', desc: 'Membangun website modern, responsif, dan berkinerja tinggi dengan fokus pada pengalaman pengguna optimal.', pills: ['Responsive Design', 'Fast Load', 'SEO Ready'] },
+            { num: '02', title: 'Dashboard System', desc: 'Sistem informasi dan dashboard admin yang terstruktur, informatif, dan mudah digunakan.', pills: ['Data Viz', 'Admin Panel', 'Real-time'] },
+            { num: '03', title: 'Landing Page', desc: 'Landing page konversi tinggi yang dirancang untuk menarik perhatian dan mengubah pengunjung menjadi pelanggan.', pills: ['CTA Design', 'Animation', 'A/B Ready'] },
+            { num: '04', title: 'UI/UX Design', desc: 'Desain antarmuka yang indah, intuitif, dan berpusat pada pengalaman pengguna yang menyenangkan.', pills: ['Figma', 'Prototype', 'User Flow'] }
+          ],
+          projects: [
+            { num: '01', name: 'HervianFolio 2.5D', desc: 'Portofolio interaktif dengan efek kedalaman 2.5D, sistem spotlight, dan transisi sinematik antar mode.', tags: ['Interactive', '2.5D', 'CSS Art'], type: 'Technology' },
+            { num: '02', name: 'Admin Dashboard', desc: 'Sistem dashboard administrasi lengkap dengan visualisasi data real-time dan panel manajemen user.', tags: ['Dashboard', 'Charts', 'Admin'], type: 'Technology' },
+            { num: '03', name: 'E-Commerce UI Kit', desc: 'Kit komponen UI untuk platform e-commerce, termasuk product card, cart, dan checkout flow yang mulus.', tags: ['UI Kit', 'E-Commerce', 'Figma'], type: 'Technology' },
+            { num: '04', name: 'Landing Page Series', desc: 'Seri landing page untuk berbagai klien dengan fokus konversi, performa tinggi, dan desain yang kuat.', tags: ['Landing Page', 'Conversion', 'Performance'], type: 'Technology' }
+          ],
+          journey: [
+            { year: '2026', badge: 'Sekarang', title: 'Interactive Web', desc: 'Mengeksplorasi antarmuka sinematik, kedalaman 2.5D, dan pengalaman portofolio yang lebih kaya dan imersif.', featured: true },
+            { year: '2025', badge: 'Pengalaman', title: 'Web Development', desc: 'Membangun website responsif dan bereksperimen dengan workflow frontend modern yang efisien.' },
+            { year: '2024', badge: 'Pendidikan', title: 'Technical Exploration', desc: 'Belajar melalui proyek praktis, prototipe, dan eksperimen iteratif yang terus berkembang.' },
+            { year: 'NEXT', badge: 'Goals', title: 'Keep Building', desc: 'Meningkatkan kualitas arsitektur, interaksi, dan kegunaan nyata di dunia digital.' }
+          ],
+          contacts: [
+            { icon: '✉️', label: 'Email', val: 'hervian@example.com', href: 'mailto:hervian@example.com' },
+            { icon: '💼', label: 'LinkedIn', val: 'linkedin.com/in/hervian', href: '#' },
+            { icon: '🐙', label: 'GitHub', val: 'github.com/hervian', href: '#' }
+          ]
+        }
+      };
+
+      let mode = location.hash === '#technology' ? 'technology' : 'business';
+      let entered = false;
+      let transitioning = false;
+      let landingDone = false;
+      let mx = 0, my = 0, cx = 0, cy = 0, raf = 0;
+
+      // Fluid inertia spotlight coordinates
+      let targetLightX = 50, targetLightY = 45;
+      let currentLightX = 50, currentLightY = 45;
+      let isUserHovering = false;
+      let lastUserInteraction = 0;
+
+      // Dust Canvas Particles
+      const dustCanvas = document.getElementById('dustCanvas');
+      const dustCtx = dustCanvas ? dustCanvas.getContext('2d') : null;
+      let dustWidth = 0, dustHeight = 0;
+      const dustParticles = [];
+      const DUST_COUNT = 130;
+
+      function initDust() {
+        if (!dustCanvas) return;
+        const rect = dustCanvas.getBoundingClientRect();
+        dustWidth = dustCanvas.width = Math.round(rect.width || dustCanvas.offsetWidth || window.innerWidth);
+        dustHeight = dustCanvas.height = Math.round(rect.height || dustCanvas.offsetHeight || window.innerHeight);
+        dustParticles.length = 0;
+        for (let i = 0; i < DUST_COUNT; i++) {
+          dustParticles.push({
+            x: Math.random() * dustWidth,
+            y: Math.random() * dustHeight,
+            vx: (Math.random() - 0.5) * 0.55,
+            vy: -0.2 - Math.random() * 0.38,
+            size: Math.random() * 2.6 + 1.1,
+            baseAlpha: Math.random() * 0.38 + 0.25,
+            twinkle: Math.random() * Math.PI * 2,
+            twinkleSpeed: 0.02 + Math.random() * 0.04
+          });
+        }
+      }
+      window.addEventListener('resize', initDust);
+      initDust();
+
+      // Ambient Floating Dust Particles (Landing Page)
+      const landingDustCanvas = document.getElementById('landingDust');
+      const landingDustCtx = landingDustCanvas ? landingDustCanvas.getContext('2d') : null;
+      let landingDustWidth = 0, landingDustHeight = 0;
+      const landingDustParticles = [];
+      const LANDING_DUST_COUNT = 85;
+
+      function initLandingDust() {
+        if (!landingDustCanvas) return;
+        const rect = landingDustCanvas.getBoundingClientRect();
+        landingDustWidth = landingDustCanvas.width = Math.round(rect.width || window.innerWidth);
+        landingDustHeight = landingDustCanvas.height = Math.round(rect.height || window.innerHeight);
+        landingDustParticles.length = 0;
+        for (let i = 0; i < LANDING_DUST_COUNT; i++) {
+          landingDustParticles.push({
+            x: Math.random() * landingDustWidth,
+            y: Math.random() * landingDustHeight,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: -0.15 - Math.random() * 0.28,
+            size: Math.random() * 2.2 + 0.9,
+            baseAlpha: Math.random() * 0.32 + 0.18,
+            twinkle: Math.random() * Math.PI * 2,
+            twinkleSpeed: 0.015 + Math.random() * 0.035
+          });
+        }
+      }
+      window.addEventListener('resize', initLandingDust);
+      initLandingDust();
+
+      // Hybrid Pointer Aura
+      const cursorRing = document.getElementById('cursorRing');
+      let mouseX = -100, mouseY = -100;
+      let ringX = -100, ringY = -100;
+
+      // Landing Spotlight Cursor & Mobile Touch Color Reveal
+      let landingSpotX = -500, landingSpotY = -500;
+      let targetSpotX = -500, targetSpotY = -500;
+      let landingSpotRaf = null;
+      let isTouchActive = false;
+      let lastTouchTime = 0;
+
+      const isTouchDevice = () => ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.matchMedia('(pointer: coarse)').matches;
+
+      function resetLandingSpotlight() {
+        if (landingSpotRaf) {
+          cancelAnimationFrame(landingSpotRaf);
+          landingSpotRaf = null;
+        }
+        isTouchActive = false;
+        if (landing) {
+          landing.classList.remove('has-spotlight');
+          landing.style.setProperty('--cursor-x', '-500px');
+          landing.style.setProperty('--cursor-y', '-500px');
+        }
+        landingSpotX = -500;
+        landingSpotY = -500;
+        targetSpotX = -500;
+        targetSpotY = -500;
+      }
+
+      function updateLandingSpotlight() {
+        if (landingDone) {
+          landingSpotRaf = null;
+          return;
+        }
+        landingSpotX += (targetSpotX - landingSpotX) * 0.22;
+        landingSpotY += (targetSpotY - landingSpotY) * 0.22;
+
+        landing.style.setProperty('--cursor-x', `${landingSpotX.toFixed(1)}px`);
+        landing.style.setProperty('--cursor-y', `${landingSpotY.toFixed(1)}px`);
+
+        if (Math.abs(targetSpotX - landingSpotX) > 0.1 || Math.abs(targetSpotY - landingSpotY) > 0.1) {
+          landingSpotRaf = requestAnimationFrame(updateLandingSpotlight);
+        } else {
+          landingSpotRaf = null;
+        }
+      }
+
+      function activateSpotlightAt(x, y) {
+        if (landingDone) return;
+        targetSpotX = x;
+        targetSpotY = y;
+
+        if (!landing.classList.contains('has-spotlight')) {
+          landingSpotX = targetSpotX;
+          landingSpotY = targetSpotY;
+          landing.style.setProperty('--cursor-x', `${landingSpotX.toFixed(1)}px`);
+          landing.style.setProperty('--cursor-y', `${landingSpotY.toFixed(1)}px`);
+          landing.classList.add('has-spotlight');
+        }
+
+        if (!landingSpotRaf) {
+          landingSpotRaf = requestAnimationFrame(updateLandingSpotlight);
+        }
+      }
+
+      // Pointermove for Mouse / Stylus
+      window.addEventListener('pointermove', (e) => {
+        if (e.pointerType === 'touch') return; // Handled by touch events
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (cursorRing && !cursorRing.classList.contains('visible')) {
+          cursorRing.classList.add('visible');
+        }
+
+        if (!landingDone) {
+          activateSpotlightAt(e.clientX, e.clientY);
+        }
+      });
+
+      // Touch events for Mobile & Tablet (iPad, Android, iPhones)
+      window.addEventListener('touchstart', (e) => {
+        if (landingDone) return;
+        const t = e.touches[0];
+        if (!t) return;
+        isTouchActive = true;
+        lastTouchTime = performance.now();
+        activateSpotlightAt(t.clientX, t.clientY);
+      }, { passive: true });
+
+      window.addEventListener('touchmove', (e) => {
+        if (landingDone) return;
+        const t = e.touches[0];
+        if (!t) return;
+        isTouchActive = true;
+        lastTouchTime = performance.now();
+        activateSpotlightAt(t.clientX, t.clientY);
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => {
+        isTouchActive = false;
+        lastTouchTime = performance.now();
+      }, { passive: true });
+
+      window.addEventListener('touchcancel', () => {
+        isTouchActive = false;
+        lastTouchTime = performance.now();
+      }, { passive: true });
+
+      document.addEventListener('pointerleave', (e) => {
+        if (e.pointerType === 'touch') return;
+        if (cursorRing) cursorRing.classList.remove('visible');
+        if (!landingDone && !isTouchDevice()) {
+          landing.classList.remove('has-spotlight');
+        }
+      });
+
+      document.addEventListener('pointerover', (e) => {
+        if (cursorRing && e.target.closest('a, button, .project, .skill, .event, .lcard-target, .brand')) {
+          cursorRing.classList.add('hover');
+        }
+      });
+      document.addEventListener('pointerout', (e) => {
+        if (cursorRing && e.target.closest('a, button, .project, .skill, .event, .lcard-target, .brand')) {
+          cursorRing.classList.remove('hover');
+        }
+      });
+
+      // Magnetic interactive elements
+      function attachMagnetic(element, strength = 0.25) {
+        element.addEventListener('pointermove', (e) => {
+          const rect = element.getBoundingClientRect();
+          const relX = e.clientX - (rect.left + rect.width / 2);
+          const relY = e.clientY - (rect.top + rect.height / 2);
+          element.style.transform = `translate3d(${(relX * strength).toFixed(1)}px, ${(relY * strength).toFixed(1)}px, 0)`;
+        });
+        element.addEventListener('pointerleave', () => {
+          element.style.transform = '';
+        });
+      }
+
+      function initMagnetics() {
+        document.querySelectorAll('.back-btn, .nav-link').forEach(el => {
+          attachMagnetic(el, 0.25);
+        });
+      }
+      initMagnetics();
+
+      // Bento Spotlight Cursor Tracking
+      document.addEventListener('pointermove', (e) => {
+        const card = e.target.closest('.project, .skill, .event');
+        if (card) {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${(e.clientX - r.left).toFixed(1)}px`);
+          card.style.setProperty('--mouse-y', `${(e.clientY - r.top).toFixed(1)}px`);
+        }
+      });
+
+      // ===== AUTOMATIC CAROUSEL SLIDE (CALM & RELAXED INTERVAL) =====
+      let autoSlideTimeout = null;
+      let isUserInteracting = false;
+
+      function stopAutoSlide() {
+        if (autoSlideTimeout) {
+          clearTimeout(autoSlideTimeout);
+          autoSlideTimeout = null;
+        }
+      }
+
+      function scheduleAutoSlide(delay = 5500) {
+        if (transitioning || landingDone || isUserInteracting) return;
+        stopAutoSlide();
+        autoSlideTimeout = setTimeout(() => {
+          if (transitioning || landingDone || isUserInteracting) return;
+          // Slowly alternate/slide to the next character
+          updateCarousel(activeIndex + 1, true);
+          scheduleAutoSlide(5500);
+        }, delay);
+      }
+
+      // ===== 3D COVERFLOW CAROUSEL LOGIC =====
+      let activeIndex = 0; // 0: Business, 1: Technology
+      const totalCards = lcards.length;
+
+      function updateCarousel(newIndex, isFromNextArrow) {
+        if (transitioning || landingDone) return;
+
+        let direction = isFromNextArrow === undefined ? true : isFromNextArrow;
+
+        if (newIndex < 0) newIndex = totalCards - 1;
+        if (newIndex >= totalCards) newIndex = 0;
+
+        if (newIndex === activeIndex) return;
+        activeIndex = newIndex;
+
+        lcards.forEach((card, idx) => {
+          card.classList.remove('is-active', 'is-prev', 'is-next', 'is-hovered', 'lcard--selected', 'anim-in-next', 'anim-out-next', 'anim-in-prev', 'anim-out-prev');
+
+          if (idx === activeIndex) {
+            card.classList.add('is-active');
+            // Animating IN
+            if (direction) {
+              card.classList.add('anim-in-next'); // Comes from Right
+            } else {
+              card.classList.add('anim-in-prev'); // Comes from Left
+            }
+          } else {
+            // Animating OUT
+            if (direction) {
+              card.classList.add('anim-out-next'); // Goes to Left
+            } else {
+              card.classList.add('anim-out-prev'); // Goes to Right
+            }
+          }
+        });
+      }
+
+      // Initial Carousel Layout
+      updateCarousel(0, true);
+      scheduleAutoSlide(4000);
+
+      // Arrow Navigations
+      if (carouselPrev) {
+        carouselPrev.addEventListener('click', (e) => {
+          e.stopPropagation();
+          stopAutoSlide();
+          updateCarousel(activeIndex - 1, false);
+          scheduleAutoSlide(6500);
+        });
+      }
+
+      if (carouselNext) {
+        carouselNext.addEventListener('click', (e) => {
+          e.stopPropagation();
+          stopAutoSlide();
+          updateCarousel(activeIndex + 1, true);
+          scheduleAutoSlide(6500);
+        });
+      }
+
+      // Swipe / Drag Gestures (Mouse & Touch on Carousel Viewport)
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let isDragging = false;
+
+      if (carouselViewport) {
+        carouselViewport.addEventListener('pointerdown', (e) => {
+          if (transitioning || landingDone) return;
+          if (e.target.closest('.lcard-enter, .carousel-nav')) return;
+          dragStartX = e.clientX;
+          dragStartY = e.clientY;
+          isDragging = true;
+          stopAutoSlide();
+        });
+
+        window.addEventListener('pointerup', (e) => {
+          if (!isDragging) return;
+          isDragging = false;
+          const diffX = e.clientX - dragStartX;
+          const diffY = e.clientY - dragStartY;
+
+          if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX < 0) {
+              updateCarousel(activeIndex + 1);
+            } else {
+              updateCarousel(activeIndex - 1);
+            }
+          }
+          scheduleAutoSlide(6500);
+        });
+      }
+
+      // Keyboard Arrow Navigation
+      window.addEventListener('keydown', (e) => {
+        if (transitioning || landingDone) return;
+        if (e.key === 'ArrowLeft') {
+          stopAutoSlide();
+          updateCarousel(activeIndex - 1);
+          scheduleAutoSlide(6500);
+        } else if (e.key === 'ArrowRight') {
+          stopAutoSlide();
+          updateCarousel(activeIndex + 1);
+          scheduleAutoSlide(6500);
+        } else if (e.key === 'Enter') {
+          const activeCard = lcards[activeIndex];
+          if (activeCard) {
+            if (activeCard.classList.contains('lcard--selected')) {
+              enterPortfolio(activeCard);
+            } else {
+              activeCard.classList.add('lcard--selected');
+            }
+          }
+        }
+      });
+
+      // Card Target Click & Interaction:
+      // Click 1 -> reveals "Lihat Portofolio →" button
+      // Click 2 (on button or card) -> enters portfolio
+      ltargets.forEach(target => {
+        const card = target.closest('.lcard');
+        const cardIndex = parseInt(card.dataset.index, 10);
+
+        card.addEventListener('click', (e) => {
+          if (transitioning || landingDone) return;
+
+          // If clicked the button directly:
+          if (e.target.closest('.lcard-enter')) {
+            enterPortfolio(card);
+            return;
+          }
+
+          // If clicking a side card: slide that card to center!
+          if (!card.classList.contains('is-active')) {
+            stopAutoSlide();
+            updateCarousel(cardIndex);
+            scheduleAutoSlide(6500);
+            return;
+          }
+
+          // If clicking active card:
+          // 1st click: show "Lihat Portofolio →" button
+          // 2nd click: enter portfolio
+          if (card.classList.contains('lcard--selected')) {
+            enterPortfolio(card);
+          } else {
+            stopAutoSlide();
+            card.classList.add('lcard--selected');
+            // Allow user to relax while button is displayed
+            scheduleAutoSlide(9000);
+          }
+        });
+
+        // Hover pause and elevation
+        card.addEventListener('pointerenter', () => {
+          if (card.classList.contains('is-active')) {
+            isUserInteracting = true;
+            stopAutoSlide();
+            card.classList.add('is-hovered');
+          }
+        });
+
+        card.addEventListener('pointerleave', () => {
+          card.classList.remove('is-hovered');
+          isUserInteracting = false;
+          if (!card.classList.contains('lcard--selected')) {
+            scheduleAutoSlide(4500);
+          }
+        });
+      });
+
+      // Click outside cards closes any open button
+      window.addEventListener('click', (e) => {
+        if (!e.target.closest('.lcard-target, .carousel-nav')) {
+          lcards.forEach(c => c.classList.remove('lcard--selected'));
+          scheduleAutoSlide(4000);
+        }
+      });
+
+      function enterPortfolio(card) {
+        if (transitioning || landingDone) return;
+        const selectedMode = card.dataset.mode || (card.classList.contains('lcard--business') ? 'business' : 'technology');
+
+        transitioning = true;
+        mode = selectedMode;
+
+        // 1. Prepare scene and portfolio underneath
+        setScene(mode);
+        renderPortfolio();
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        initDust();
+
+        // 2. Start portal morphing: character glides gracefully to center
+        body.classList.remove('hero-ignited', 'entered');
+        landing.classList.remove('landing--handover', 'leaving');
+        body.classList.add('portal-morphing');
+
+        const otherCard = card.id === 'lcardBusiness' ? lcardTechnology : lcardBusiness;
+        landing.classList.add('landing--morphing');
+        card.classList.add('lcard--morphing');
+        if (otherCard) otherCard.classList.add('lcard--fading-out');
+
+        // 3. Handover point (~720ms): Landing character arrives at center with full clarity.
+        // It then seamlessly dissolves into glowing white light while Hero character blooms forth in rich animation!
+        setTimeout(() => {
+          landing.classList.add('landing--handover');
+          body.classList.add('hero-ignited', 'entered');
+          updateNavScroll();
+        }, 720);
+
+        // 4. Smooth fade-out of landing overlay
+        setTimeout(() => {
+          landing.classList.add('leaving');
+        }, 1300);
+
+        // 5. Clean completion
+        setTimeout(() => {
+          landingDone = true;
+          transitioning = false;
+          history.replaceState(null, '', '#' + mode);
+        }, 1800);
+      }
+
+      function setScene(next) {
+        mode = next;
+        scene.classList.toggle('tech', mode === 'technology');
+        const d = data[mode];
+        introKicker.textContent = d.kicker;
+        introTitle.innerHTML = d.introTitle;
+        introText.textContent = d.introText;
+        if (entered) renderPortfolio();
+      }
+
+      function renderPortfolio() {
+        const d = data[mode];
+        navMode.textContent = d.kicker;
+        heroMeta.textContent = d.heroMeta;
+        heroTitle.innerHTML = d.heroTitle;
+        heroCopy.textContent = d.heroCopy;
+        heroDiscipline.textContent = d.kicker;
+        aboutTitle.innerHTML = d.aboutTitle;
+        aboutA.textContent = d.aboutA;
+        aboutB.textContent = d.aboutB;
+        contactCopy.textContent = d.contactCopy;
+        footerMode.textContent = d.kicker + ' × Technology';
+
+        // Update stats
+        const sp = document.getElementById('statProjects');
+        const sy = document.getElementById('statYears');
+        const sc = document.getElementById('statClients');
+        if (sp && d.stats) sp.textContent = d.stats.projects;
+        if (sy && d.stats) sy.textContent = d.stats.years;
+        if (sc && d.stats) sc.textContent = d.stats.clients;
+
+        // Render Skills
+        skillGrid.innerHTML = d.skills.map((s, i) => `
+          <div class="skill-card sr sr-d${(i % 6) + 1}">
+            <div class="skill-card-icon">${s.icon}</div>
+            <span class="skill-card-name">${s.name}</span>
+            <span class="skill-card-desc">${s.desc}</span>
+            <div class="skill-tags">${s.tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}</div>
+          </div>`).join('');
+
+        // Render Services
+        if (servicesGrid) {
+          servicesGrid.innerHTML = d.services.map((s, i) => `
+            <div class="service-card sr sr-d${(i % 4) + 1}">
+              <div class="service-num">${s.num}</div>
+              <span class="service-title">${s.title}</span>
+              <p class="service-desc">${s.desc}</p>
+              <div class="service-pills">${s.pills.map(p => `<span class="service-pill">${p}</span>`).join('')}</div>
+            </div>`).join('');
+        }
+
+        // Render Projects
+        projectList.innerHTML = d.projects.map((p, i) => `
+          <article class="project-card sr sr-d${(i % 4) + 1}">
+            <div class="project-thumb">
+              <div class="project-thumb-inner">
+                <div class="project-thumb-overlay"></div>
+                <span class="project-thumb-label">${p.type}</span>
+                <span class="project-thumb-num">${p.num}</span>
+                <div class="project-mockup">
+                  <div class="project-mockup-bars"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-body-top">
+                <span class="project-name">${p.name}</span>
+                <div class="project-arrow">↗</div>
+              </div>
+              <p class="project-desc">${p.desc}</p>
+              <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+            </div>
+          </article>`).join('');
+
+        // Render Journey
+        timeline.innerHTML = d.journey.map((j, i) => `
+          <article class="journey-card${j.featured ? ' featured' : ''} sr sr-d${(i % 4) + 1}">
+            ${j.featured ? `<div><div class="journey-year">${j.year}</div><div class="journey-badge">${j.badge}</div></div><div><h4>${j.title}</h4><p>${j.desc}</p></div>` :
+            `<div class="journey-year">${j.year}</div><div class="journey-badge">${j.badge}</div><h4>${j.title}</h4><p>${j.desc}</p>`}
+          </article>`).join('');
+
+        // Render Contact Links
+        if (contactLinks) {
+          contactLinks.innerHTML = d.contacts.map(c => `
+            <a class="contact-link" href="${c.href}">
+              <div class="contact-link-icon">${c.icon}</div>
+              <div class="contact-link-body">
+                <span class="contact-link-label">${c.label}</span>
+                <span class="contact-link-val">${c.val}</span>
+              </div>
+              <span class="contact-link-arrow">↗</span>
+            </a>`).join('');
+        }
+
+        // Re-observe all new .sr elements (dynamically rendered)
+        document.querySelectorAll('.sr').forEach(el => srObserver.observe(el));
+
+        // Re-attach bento mouse tracking for skill and project cards
+        attachBentoMouseTracking();
+      }
+
+      // Mouse spotlight tracking for bento cards
+      function attachBentoMouseTracking() {
+        document.querySelectorAll('.skill-card, .project-card').forEach(card => {
+          card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mouse-x', (e.clientX - r.left) + 'px');
+            card.style.setProperty('--mouse-y', (e.clientY - r.top) + 'px');
+          });
+        });
+      }
+
+      // Scroll Reveal Observer
+      const srObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            srObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      // Observe static .sr elements (section headings etc)
+      document.querySelectorAll('.sr').forEach(el => srObserver.observe(el));
+
+      function backToLanding() {
+        // Reset portfolio state
+        body.classList.remove('entered', 'portal-morphing', 'hero-ignited');
+        entered = false;
+        landingDone = false;
+        transitioning = false;
+        window.scrollTo({ top: 0, behavior: 'auto' });
+
+        // Remove morphing & card states
+        landing.classList.remove('leaving', 'landing--morphing', 'landing--handover');
+        lcards.forEach(c => c.classList.remove('lcard--morphing', 'lcard--fading-out', 'lcard--selected', 'is-hovered'));
+        isUserHoveringCard = false;
+
+        // Reset spotlight state cleanly
+        resetLandingSpotlight();
+
+        // If mouse is already inside viewport, re-anchor spotlight to current position
+        if (mouseX > 0 && mouseY > 0 && mouseX <= window.innerWidth && mouseY <= window.innerHeight) {
+          activateSpotlightAt(mouseX, mouseY);
+        } else if (isTouchDevice()) {
+          activateSpotlightAt(window.innerWidth * 0.5, window.innerHeight * 0.52);
+        }
+
+        // Clean URL hash so back navigation doesn't trap
+        if (location.hash) {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+
+        initLandingDust();
+        initDust();
+        updateCarousel(activeIndex);
+        isUserInteracting = false;
+        scheduleAutoSlide(4000);
+      }
+
+      // Click scroll cue to scroll smoothly to portfolio content
+      const scrollCue = document.getElementById('scrollCue');
+      if (scrollCue) {
+        scrollCue.addEventListener('click', () => {
+          const hero = document.querySelector('.portfolio-hero');
+          if (hero) {
+            hero.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Transparent navbar at top, frosted glass on scroll
+      const portfolioNav = document.querySelector('.portfolio-nav');
+      function updateNavScroll() {
+        if (portfolioNav) {
+          portfolioNav.classList.toggle('scrolled', window.scrollY > 40);
+        }
+      }
+      window.addEventListener('scroll', updateNavScroll, { passive: true });
+      updateNavScroll();
+
+      // Back button
+      backBtn.addEventListener('click', backToLanding);
+
+      window.addEventListener('hashchange', () => {
+        if (!location.hash || location.hash === '#' || location.hash === '#landing') {
+          backToLanding();
+          return;
+        }
+        const next = location.hash === '#technology' ? 'technology' : 'business';
+        setScene(next);
+      });
+
+      intro.addEventListener('pointermove', e => {
+        isUserHovering = true;
+        lastUserInteraction = performance.now();
+        const r = intro.getBoundingClientRect();
+        mx = ((e.clientX - r.left) / r.width - 0.5) * 12;
+        my = ((e.clientY - r.top) / r.height - 0.5) * -8;
+        targetLightX = (((e.clientX - r.left) / r.width) * 100);
+        targetLightY = (((e.clientY - r.top) / r.height) * 100);
+      });
+
+      intro.addEventListener('pointerleave', () => {
+        isUserHovering = false;
+      });
+
+      intro.addEventListener('touchmove', e => {
+        const t = e.touches[0];
+        if (!t) return;
+        isUserHovering = true;
+        lastUserInteraction = performance.now();
+        const r = intro.getBoundingClientRect();
+        mx = ((t.clientX - r.left) / r.width - 0.5) * 8;
+        my = ((t.clientY - r.top) / r.height - 0.5) * -5;
+        targetLightX = (((t.clientX - r.left) / r.width) * 100);
+        targetLightY = (((t.clientY - r.top) / r.height) * 100);
+      }, { passive: true });
+
+      function tick(now) {
+        const nowTime = now || performance.now();
+
+        if (nowTime - lastUserInteraction > 2000) {
+          isUserHovering = false;
+        }
+
+        if (!isUserHovering) {
+          const t = nowTime * 0.001;
+          mx = Math.sin(t * 0.65) * 4.6 + Math.cos(t * 1.25) * 2.2;
+          my = Math.cos(t * 0.55) * 3.2 + Math.sin(t * 0.95) * 1.5;
+          targetLightX = 50 + Math.sin(t * 0.75) * 18 + Math.cos(t * 1.35) * 7;
+          targetLightY = 44 + Math.cos(t * 0.65) * 12 + Math.sin(t * 1.1) * 5;
+        }
+
+        if (cursorRing) {
+          ringX += (mouseX - ringX) * 0.2;
+          ringY += (mouseY - ringY) * 0.2;
+          cursorRing.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0)`;
+        }
+
+        cx += (mx - cx) * 0.08;
+        cy += (my - cy) * 0.08;
+
+        currentLightX += (targetLightX - currentLightX) * 0.085;
+        currentLightY += (targetLightY - currentLightY) * 0.085;
+        if (sceneLight) {
+          sceneLight.style.setProperty('--light-x', `${currentLightX.toFixed(2)}%`);
+          sceneLight.style.setProperty('--light-y', `${currentLightY.toFixed(2)}%`);
+        }
+
+        // Ambient Spotlight on Active Character for Touch / Mobile Screens
+        if (!landingDone && isTouchDevice() && !isTouchActive && (nowTime - lastTouchTime > 1500)) {
+          const t = nowTime * 0.001;
+          const centerX = window.innerWidth * 0.5 + Math.sin(t * 0.7) * (window.innerWidth * 0.06);
+          const centerY = window.innerHeight * 0.52 + Math.cos(t * 0.85) * 18;
+          activateSpotlightAt(centerX, centerY);
+        }
+
+        // Floating Ambient Particles on Landing
+        if (landingDustCtx && !landingDone && landingDustWidth > 0) {
+          landingDustCtx.clearRect(0, 0, landingDustWidth, landingDustHeight);
+          for (let i = 0; i < landingDustParticles.length; i++) {
+            const p = landingDustParticles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.twinkle += p.twinkleSpeed;
+            if (p.y < -10) p.y = landingDustHeight + 10;
+            if (p.x < -10) p.x = landingDustWidth + 10;
+            if (p.x > landingDustWidth + 10) p.x = -10;
+
+            const tw = 0.82 + Math.sin(p.twinkle) * 0.28;
+            const alpha = p.baseAlpha * tw;
+
+            landingDustCtx.beginPath();
+            landingDustCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            landingDustCtx.fillStyle = `rgba(255, 255, 255, ${alpha.toFixed(3)})`;
+            landingDustCtx.fill();
+
+            if (alpha > 0.36) {
+              landingDustCtx.beginPath();
+              landingDustCtx.arc(p.x, p.y, p.size * 2.2, 0, Math.PI * 2);
+              landingDustCtx.fillStyle = `rgba(255, 255, 255, ${(alpha * 0.22).toFixed(3)})`;
+              landingDustCtx.fill();
+            }
+          }
+        }
+
+        const isIntroInView = window.scrollY < window.innerHeight + 100;
+        if (dustCtx && isIntroInView && dustWidth > 0) {
+          dustCtx.clearRect(0, 0, dustWidth, dustHeight);
+          const lightPixelX = (currentLightX / 100) * dustWidth;
+          const lightPixelY = (currentLightY / 100) * dustHeight;
+          const beamRadius = 450;
+
+          for (let i = 0; i < dustParticles.length; i++) {
+            const p = dustParticles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.twinkle += p.twinkleSpeed;
+            if (p.y < -10) p.y = dustHeight + 10;
+            if (p.x < -10) p.x = dustWidth + 10;
+            if (p.x > dustWidth + 10) p.x = -10;
+
+            const dx = p.x - lightPixelX;
+            const dy = p.y - lightPixelY;
+            const dist = Math.hypot(dx, dy);
+
+            const tw = 0.82 + Math.sin(p.twinkle) * 0.28;
+            let alpha = p.baseAlpha * tw;
+            if (dist < beamRadius) {
+              const factor = Math.pow(1 - dist / beamRadius, 1.25);
+              alpha = Math.min(1, alpha + factor * 0.85);
+            }
+
+            dustCtx.beginPath();
+            dustCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            dustCtx.fillStyle = `rgba(255, 255, 255, ${alpha.toFixed(3)})`;
+            dustCtx.fill();
+
+            if (alpha > 0.42) {
+              dustCtx.beginPath();
+              dustCtx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
+              dustCtx.fillStyle = `rgba(255, 255, 255, ${(alpha * 0.25).toFixed(3)})`;
+              dustCtx.fill();
+            }
+          }
+        }
+
+        const charX = cx * 2.2;
+        const charY = -cy * 1.5;
+        const rotX = -cy * 0.75;
+        const rotY = cx * 1.1;
+        characterWrap.style.transform =
+          `translate3d(${charX.toFixed(2)}px, ${charY.toFixed(2)}px, 80px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+
+        const shadowX = (-cx * 3.5).toFixed(1);
+        const shadowY = (34 + cy * 2.5).toFixed(1);
+        characterWrap.style.setProperty('--shadow-x', `${shadowX}px`);
+        characterWrap.style.setProperty('--shadow-y', `${shadowY}px`);
+
+        if (bgWrap) {
+          const bgX = (-cx * 1.2).toFixed(2);
+          const bgY = (cy * 0.8).toFixed(2);
+          bgWrap.style.transform = `translate3d(${bgX}px, ${bgY}px, -40px) scale(1.06)`;
+        }
+
+        if (introCopy) {
+          const textX = (cx * 1.4).toFixed(2);
+          const textY = (-cy * 1.0).toFixed(2);
+          if (window.innerWidth > 850) {
+            introCopy.style.transform = `translate3d(${textX}px, calc(-50% + ${textY}px), 45px) rotateX(${(-cy * 0.35).toFixed(2)}deg) rotateY(${(cx * 0.45).toFixed(2)}deg)`;
+          } else {
+            introCopy.style.transform = `translate3d(${textX}px, ${textY}px, 20px)`;
+          }
+        }
+
+        raf = requestAnimationFrame(tick);
+      }
+      tick();
+
+      setScene(mode);
+      if (isTouchDevice()) {
+        activateSpotlightAt(window.innerWidth * 0.5, window.innerHeight * 0.52);
+      }
+    })();
+  </script>
+  <div class="cursor-ring" id="cursorRing"></div>
+</body>
+
+</html>

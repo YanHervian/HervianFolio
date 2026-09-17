@@ -114,40 +114,48 @@
         { num: '06', title: 'Multimedia Design', desc: 'Produksi konten visual profesional seperti desain grafis, editing video, dan audio untuk mendukung branding dan promosi.', pills: ['Photo Editing', 'Video Editing', 'Audio Editing', 'Graphic Design'], icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>' }
       ],
       projects: [
-        { category: 'Website', num: '01', name: 'Seblak Teh Isum', desc: 'Website sistem informasi pemesanan makanan berbasis web yang mengintegrasikan fitur Admin dan Pelanggan untuk mengelola menu, pesanan, dan data transaksi.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/STI.webp' },
-        { category: 'Website', num: '02', name: 'Suaramayana', desc: 'Website informasi budaya Indonesia yang menyajikan berbagai konten mengenai kekayaan budaya Nusantara, seperti tradisi, seni, dan warisan budaya.', tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'], type: 'Technology', img: 'assets/proyek-it/Website/SRM.png' },
-        { category: 'Website', num: '03', name: 'Star Playstation', desc: 'Website sistem informasi penyewaan konsol PlayStation berbasis web yang mengintegrasikan fitur Admin dan Pelanggan untuk mengelola konsol, penyewaan, dan transaksi.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/STR.png' },
-        { category: 'Website', num: '04', name: 'Cafe 21', desc: 'Website sistem informasi pemesanan menu kafe berbasis web yang mengintegrasikan fitur Admin dan Pelanggan untuk mengelola menu, pesanan, dan transaksi.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/CFE.png' },
-        { category: 'Website', num: '05', name: 'BIT Store', desc: 'Website sistem informasi penjualan pakaian berbasis web yang mengintegrasikan fitur Admin dan User untuk mengelola produk, kategori, dan transaksi sekaligus memberikan pengalaman belanja yang responsif.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/BIT.png' },
-        { category: 'Website', num: '06', name: 'Masak Yuk!', desc: 'Website sistem informasi berbagi resep makanan berbasis web yang memungkinkan pengguna membuat, membagikan, dan menjelajahi berbagai resep masakan secara interaktif.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/MY.png' },
-        { category: 'Website', num: '07', name: 'Ngopi Yuk!', desc: 'Website landing page yang dirancang sebagai media informasi dan promosi untuk sebuah kafe dengan tampilan modern, responsif, dan mudah diakses.', tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'UI/UX Design'], type: 'Technology', img: 'assets/proyek-it/Website/OpiYuk.png' },
-        { category: 'Website', num: '08', name: 'SimpaiDaya', desc: 'Website sistem informasi penjualan aksesori khas suku Dayak yang mengintegrasikan fitur Admin dan User untuk mengelola produk, transaksi, dan memperkenalkan produk budaya lokal.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/SMP.png' },
-        { category: 'Website', num: '09', name: 'Seblak Isum', desc: 'Website sistem informasi pemesanan makanan berbasis web yang mengintegrasikan fitur Admin dan Pelanggan untuk mengelola menu, pesanan, dan seluruh proses transaksi.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/SBL.png' },
-        { category: 'Website', num: '10', name: 'All Phone Web', desc: 'Website sistem informasi penjualan handphone berbasis web yang mengintegrasikan fitur Admin dan User untuk mengelola produk, kategori, dan transaksi dengan antarmuka modern.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/APW.png' },
-        { category: 'Aplikasi', num: '11', name: 'Tandara', desc: 'merupakan aplikasi pembelajaran bahasa isyarat berbasis Augmented Reality (AR) yang memanfaatkan teknologi hand tracking untuk menghadirkan pengalaman belajar yang interaktif. Aplikasi ini menyediakan berbagai materi, permainan edukatif, serta mode multiplayer untuk mendukung proses belajar bahasa isyarat secara lebih menyenangkan.', tags: ['Android', 'Augmented Reality (AR)', 'Unity', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/TDR.png' },
-        { category: 'Aplikasi', num: '12', name: 'Catatan Praktis', desc: 'merupakan aplikasi pencatatan harian yang dirancang untuk membantu pengguna membuat, mengelola, dan menyimpan berbagai catatan secara mudah. Aplikasi ini menawarkan antarmuka yang sederhana, ringan, dan responsif sehingga nyaman digunakan dalam aktivitas sehari hari.', tags: ['Android', 'Android Studio'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/ApplikasiCatatan.png' },
-        { category: 'Aplikasi', num: '13', name: 'Hervian Downloader', desc: 'merupakan aplikasi utilitas yang memudahkan pengguna mengunduh video dari berbagai platform media sosial, seperti Instagram, YouTube, dan TikTok. Selain itu, aplikasi ini juga menyediakan fitur konversi gambar menjadi dokumen PDF dalam satu aplikasi yang praktis dan mudah digunakan.', tags: ['Android', 'Android Studio'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/HD.png' },
-        { category: 'Aplikasi', num: '14', name: 'Checkin Aja', desc: 'merupakan desain antarmuka (UI/UX) aplikasi pemesanan hotel yang dirancang untuk memberikan pengalaman pengguna yang modern, intuitif, dan mudah digunakan. Desain ini mencakup alur pencarian hotel, pemesanan kamar, serta navigasi yang berfokus pada kenyamanan pengguna.', tags: ['Android', 'Android Studio'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/AplikasiCheckin.png' },
-        { category: 'Aplikasi', num: '15', name: 'Aplikasi Laundry', desc: 'merupakan aplikasi manajemen laundry yang membantu pemilik usaha dalam mengelola data pelanggan, pesanan, dan proses layanan laundry. Aplikasi ini menggunakan penyimpanan lokal pada perangkat sehingga seluruh data dapat dikelola secara praktis tanpa memerlukan database eksternal.', tags: ['Android', 'Android Studio'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/AplikasiLaundry.png' },
-        { category: 'Aplikasi', num: '16', name: 'Belajar Buah Buahan', desc: 'merupakan aplikasi edukasi yang dirancang untuk membantu pengguna mengenal berbagai jenis buah melalui media pembelajaran interaktif. Aplikasi ini menyajikan materi dalam bentuk ilustrasi 2D serta visualisasi 3D berbasis Augmented Reality (AR) sehingga proses belajar menjadi lebih menarik dan menyenangkan.', tags: ['Android', 'Augmented Reality (AR)', 'Unity', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/BBB.png' },
-        { category: 'Aplikasi', num: '17', name: 'VB Kasir Hotel', desc: 'merupakan aplikasi desktop sistem informasi manajemen hotel yang membantu pengelolaan data pelanggan, reservasi kamar, transaksi, dan administrasi operasional. Aplikasi ini dilengkapi dengan database sehingga seluruh proses pengelolaan hotel dapat dilakukan secara terintegrasi dan efisien.', tags: ['Desktop', 'Visual Studio 2022'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/VBH.png' },
-        { category: 'Aplikasi', num: '18', name: 'VB Kasir Restoran', desc: 'merupakan aplikasi desktop sistem informasi kasir restoran yang membantu pengelolaan menu, transaksi penjualan, data pelanggan, dan laporan penjualan. Aplikasi ini dilengkapi dengan database untuk mendukung operasional restoran secara lebih terstruktur dan efisien.', tags: ['Desktop', 'Visual Studio 2022'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/VBR.png' },
-        { category: 'Game', num: '19', name: 'Pedivi Garden', desc: 'merupakan game simulasi berkebun yang menggabungkan pengelolaan pertanian dengan sentuhan budaya Indonesia. Pemain dapat menanam, merawat, memanen, dan menjual hasil kebun, sekaligus belajar mengelola keuangan dalam lingkungan yang menghadirkan bangunan khas daerah, pakaian adat, dan nuansa budaya Indonesia yang autentik.', tags: ['Unity', 'C#', 'Pengembangan Game', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Game/PediviBanner.png' },
-        { category: 'Game', num: '20', name: 'Escavia', desc: 'merupakan game Virtual Reality (VR) bertema simulasi bencana yang memberikan pengalaman interaktif dalam menghadapi berbagai bencana alam maupun nonalam. Game ini dirancang untuk meningkatkan pemahaman dan kesiapsiagaan pemain melalui simulasi yang imersif dan realistis.', tags: ['Unity', 'C#', 'Pengembangan Game', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Game/EscaviaBAnner.jpeg' },
-        { category: 'Game', num: '21', name: 'BizBreak', desc: 'merupakan game horor bertahan hidup yang mengajak pemain melarikan diri dari rumah berhantu setelah diculik oleh makhluk misterius. Pemain harus memecahkan teka-teki, menghindari ancaman, dan mencari jalan keluar untuk bertahan hidup hingga berhasil meloloskan diri.', tags: ['Unity', 'C#', 'Pengembangan Game', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Game/BizBreak.png' },
-        { category: 'Game', num: '22', name: 'Tank Battle', desc: 'merupakan game aksi bertema peperangan yang menghadirkan pertempuran antarnegara menggunakan kendaraan tempur. Pemain dituntut menyusun strategi, mengendalikan tank, dan mengalahkan lawan untuk memenangkan setiap pertempuran.', tags: ['Unity', 'C#', 'Pengembangan Game', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Game/Tank Battle.png' },
-        { category: 'Foto', num: '23', name: 'Portrait Double Exposure', desc: 'Hasil editing foto portrait dengan teknik double exposure yang menggabungkan elemen visual artistik untuk menghasilkan komposisi yang unik, kreatif, dan berkarakter.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET1.png' },
-        { category: 'Foto', num: '24', name: 'Urban City Manipulation', desc: 'Manipulasi foto bertema perkotaan yang mengombinasikan efek digital, color grading, dan komposisi modern untuk menciptakan visual yang estetik dan menarik.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET2.png' },
-        { category: 'Foto', num: '25', name: 'Horror Poster Design', desc: 'Desain poster bertema horor yang menggabungkan teknik manipulasi foto, pencahayaan, dan efek visual sinematik untuk menghasilkan karya yang dramatis dan penuh atmosfer.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET3.png' },
-        { category: 'Foto', num: '26', name: 'Color Grading Restoration', desc: 'Proses photo retouching dan color grading yang mengubah tampilan foto menjadi lebih hidup melalui penyesuaian warna, pencahayaan, dan detail secara profesional.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET5.png' },
-        { category: 'Foto', num: '27', name: 'Health Awareness Poster', desc: 'Desain poster edukasi kesehatan yang menyajikan informasi mengenai pentingnya konsumsi air putih melalui tata letak yang informatif, ilustrasi visual, dan komposisi yang menarik sehingga pesan dapat disampaikan secara efektif.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET6.webp' },
-        { category: 'Foto', num: '28', name: 'Educational Campaign Poster', desc: 'Desain poster kampanye edukasi yang mengangkat pentingnya budaya membaca melalui perpaduan tipografi, ilustrasi, dan tata letak visual yang informatif, menarik, serta mudah dipahami.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET7.jpg' },
-        { category: 'Video', num: '29', name: 'Happy Tos Commercial Advertisement', desc: 'Video iklan komersial produk makanan ringan Happy Tos yang dikemas dengan konsep promosi kreatif melalui perpaduan motion graphics, transisi, dan visual yang menarik untuk meningkatkan daya tarik produk.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/HPT.jpg' },
-        { category: 'Video', num: '30', name: 'Amikom Promotional Advertisement', desc: 'Video promosi yang memperkenalkan lingkungan dan fasilitas Universitas Amikom dengan penyampaian visual yang menarik, informatif, dan komunikatif untuk menarik minat calon mahasiswa.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/IklanAmikom.jpg' },
-        { category: 'Video', num: '31', name: 'Kirana Short Film', desc: 'Film pendek yang mengangkat alur cerita sederhana dengan pengemasan sinematik melalui teknik editing, color grading, transisi, dan motion graphics untuk memberikan pengalaman visual yang lebih menarik.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/Kirana.jpg' },
-        { category: 'Video', num: '32', name: 'Sate Taichan Promotional Video', desc: 'Video promosi kuliner yang menampilkan produk Sate Taichan dengan pengambilan gambar sinematik, color grading, dan motion graphics untuk meningkatkan daya tarik visual sebagai media pemasaran.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/ST.jpg' },
-        { category: 'Video', num: '33', name: 'Qtela Commercial Advertisement', desc: 'Video iklan komersial produk Qtela yang dikembangkan dengan konsep visual modern, editing dinamis, serta penyampaian informasi yang efektif untuk mendukung promosi produk.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/VD1.jpg' },
-        { category: 'Video', num: '34', name: 'Goliath Cover Music Video', desc: 'Video musik cover lagu Masih Disini Masih Denganmu dari Goliath yang dipadukan dengan teknik editing, color grading, dan motion graphics untuk menghasilkan tampilan visual yang lebih menarik dan sinematik.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/VD2.jpg' }
+
+        { category: 'Website', num: '01', name: 'Gereja Katolik Santa Agnes Anggana', desc: 'Website sistem informasi terpadu untuk Gereja Katolik Santa Agnes Anggana yang dilengkapi dengan backend mandiri. Platform ini menyajikan informasi lengkap terkait jadwal ibadah, galeri kegiatan gereja, pengumuman, serta berbagai informasi pelayanan umat secara terpusat dan mudah diakses.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/Gerejasantaagens-0.png' },
+        { category: 'Website', num: '02', name: 'YanTravelPlan', desc: 'Alat bantu perencana perjalanan wisata cerdas. Kami menyajikan panduan rute dan estimasi berbasis AI menggunakan data publik dan sangat menghargai privasi serta keamanan Anda.', tags: ['AI', 'Travel Planner', 'Web App'], type: 'Technology', img: 'assets/proyek-it/Website/YanTravel-1.png' },
+        { category: 'Website', num: '03', name: 'YanDownloader', desc: 'Aplikasi web modern untuk mengunduh video dan foto dari berbagai media sosial populer tanpa ribet, tanpa watermark, dan tanpa iklan pop-up yang mengganggu.', tags: ['Web App', 'Downloader', 'Modern UI'], type: 'Technology', img: 'assets/proyek-it/Website/YanDownloader-2.png' },
+        { category: 'Website', num: '04', name: 'YanFilm', desc: 'Platform agregator pencarian film cerdas yang menggabungkan kekuatan Scraping Konkuren (Multi-Server), kecerdasan buatan Google Gemini AI, dan sinkronisasi metadata terpadu The Movie Database (TMDB). Dirancang untuk memberikan pengalaman pencarian film yang mulus, seragam, dan bebas buffering tanpa iklan pop-up yang mengganggu.', tags: ['AI', 'Web App', 'TMDB', 'Scraping'], type: 'Technology', img: 'assets/proyek-it/Website/YanFilm-3.png' },
+        { category: 'Website', num: '05', name: 'YanPlanAI', desc: 'AI Decision Planner yang menggabungkan pengelolaan keuangan, perhitungan finansial, simulasi skenario, dan AI reasoning untuk membantu pengguna memahami risiko serta konsekuensi sebelum mengambil keputusan finansial.', tags: ['AI', 'Finance Planner', 'Decision Engine'], type: 'Technology', img: 'assets/proyek-it/Website/YanPlanAI-4.png' },
+        { category: 'Website', num: '06', name: 'YanConverterPDF', desc: 'Menyediakan berbagai alat PDF yang mudah digunakan untuk mengonversi, menggabungkan, memisahkan, mengompres, memutar, dan mengelola dokumen PDF Secara GRATIS. Seluruh proses dilakukan langsung di browser demi menjaga keamanan dan privasi file Anda.', tags: ['PDF Tools', 'Web App', 'Privacy Focused'], type: 'Technology', img: 'assets/proyek-it/Website/YanConverterPDF-5.png' },
+        { category: 'Website', num: '07', name: 'YanSongFinder', desc: 'Alat bantu pengenal dan pencari musik publik.', tags: ['Music Finder', 'Web App'], type: 'Technology', img: 'assets/proyek-it/Website/YanSongFinder-6.png' },
+        { category: 'Website', num: '08', name: 'Seblak Teh Isum', desc: 'Website sistem informasi pemesanan makanan berbasis web yang mengintegrasikan fitur Admin dan Pelanggan untuk mengelola menu, pesanan, dan data transaksi.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/STI.webp' },
+        { category: 'Website', num: '09', name: 'Suaramayana', desc: 'Website informasi budaya Indonesia yang menyajikan berbagai konten mengenai kekayaan budaya Nusantara, seperti tradisi, seni, dan warisan budaya.', tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'], type: 'Technology', img: 'assets/proyek-it/Website/SRM.png' },
+        { category: 'Website', num: '10', name: 'Star Playstation', desc: 'Website sistem informasi penyewaan konsol PlayStation berbasis web yang mengintegrasikan fitur Admin dan Pelanggan untuk mengelola konsol, penyewaan, dan transaksi.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/STR.png' },
+        { category: 'Website', num: '11', name: 'Cafe 21', desc: 'Website sistem informasi pemesanan menu kafe berbasis web yang mengintegrasikan fitur Admin dan Pelanggan untuk mengelola menu, pesanan, dan transaksi.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/CFE.png' },
+        { category: 'Website', num: '12', name: 'BIT Store', desc: 'Website sistem informasi penjualan pakaian berbasis web yang mengintegrasikan fitur Admin dan User untuk mengelola produk, kategori, dan transaksi sekaligus memberikan pengalaman belanja yang responsif.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/BIT.png' },
+        { category: 'Website', num: '13', name: 'Masak Yuk!', desc: 'Website sistem informasi berbagi resep makanan berbasis web yang memungkinkan pengguna membuat, membagikan, dan menjelajahi berbagai resep masakan secara interaktif.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/MY.png' },
+        { category: 'Website', num: '14', name: 'Ngopi Yuk!', desc: 'Website landing page yang dirancang sebagai media informasi dan promosi untuk sebuah kafe dengan tampilan modern, responsif, dan mudah diakses.', tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'UI/UX Design'], type: 'Technology', img: 'assets/proyek-it/Website/OpiYuk.png' },
+        { category: 'Website', num: '15', name: 'SimpaiDaya', desc: 'Website sistem informasi penjualan aksesori khas suku Dayak yang mengintegrasikan fitur Admin dan User untuk mengelola produk, transaksi, dan memperkenalkan produk budaya lokal.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/SMP.png' },
+        { category: 'Website', num: '16', name: 'Seblak Isum', desc: 'Website sistem informasi pemesanan makanan berbasis web yang mengintegrasikan fitur Admin dan Pelanggan untuk mengelola menu, pesanan, dan seluruh proses transaksi.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/SBL.png' },
+        { category: 'Website', num: '17', name: 'All Phone Web', desc: 'Website sistem informasi penjualan handphone berbasis web yang mengintegrasikan fitur Admin dan User untuk mengelola produk, kategori, dan transaksi dengan antarmuka modern.', tags: ['HTML', 'CSS', 'PHP', 'CodeIgniter', 'MySQL'], type: 'Technology', img: 'assets/proyek-it/Website/APW.png' },
+        { category: 'Aplikasi', num: '18', name: 'Tandara', desc: 'merupakan aplikasi pembelajaran bahasa isyarat berbasis Augmented Reality (AR) yang memanfaatkan teknologi hand tracking untuk menghadirkan pengalaman belajar yang interaktif. Aplikasi ini menyediakan berbagai materi, permainan edukatif, serta mode multiplayer untuk mendukung proses belajar bahasa isyarat secara lebih menyenangkan.', tags: ['Android', 'Augmented Reality (AR)', 'Unity', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/TDR.png' },
+        { category: 'Aplikasi', num: '19', name: 'Catatan Praktis', desc: 'merupakan aplikasi pencatatan harian yang dirancang untuk membantu pengguna membuat, mengelola, dan menyimpan berbagai catatan secara mudah. Aplikasi ini menawarkan antarmuka yang sederhana, ringan, dan responsif sehingga nyaman digunakan dalam aktivitas sehari hari.', tags: ['Android', 'Android Studio'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/ApplikasiCatatan.png' },
+        { category: 'Aplikasi', num: '20', name: 'Hervian Downloader', desc: 'merupakan aplikasi utilitas yang memudahkan pengguna mengunduh video dari berbagai platform media sosial, seperti Instagram, YouTube, dan TikTok. Selain itu, aplikasi ini juga menyediakan fitur konversi gambar menjadi dokumen PDF dalam satu aplikasi yang praktis dan mudah digunakan.', tags: ['Android', 'Android Studio'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/HD.png' },
+        { category: 'Aplikasi', num: '21', name: 'Checkin Aja', desc: 'merupakan desain antarmuka (UI/UX) aplikasi pemesanan hotel yang dirancang untuk memberikan pengalaman pengguna yang modern, intuitif, dan mudah digunakan. Desain ini mencakup alur pencarian hotel, pemesanan kamar, serta navigasi yang berfokus pada kenyamanan pengguna.', tags: ['Android', 'Android Studio'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/AplikasiCheckin.png' },
+        { category: 'Aplikasi', num: '22', name: 'Aplikasi Laundry', desc: 'merupakan aplikasi manajemen laundry yang membantu pemilik usaha dalam mengelola data pelanggan, pesanan, dan proses layanan laundry. Aplikasi ini menggunakan penyimpanan lokal pada perangkat sehingga seluruh data dapat dikelola secara praktis tanpa memerlukan database eksternal.', tags: ['Android', 'Android Studio'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/AplikasiLaundry.png' },
+        { category: 'Aplikasi', num: '23', name: 'Belajar Buah Buahan', desc: 'merupakan aplikasi edukasi yang dirancang untuk membantu pengguna mengenal berbagai jenis buah melalui media pembelajaran interaktif. Aplikasi ini menyajikan materi dalam bentuk ilustrasi 2D serta visualisasi 3D berbasis Augmented Reality (AR) sehingga proses belajar menjadi lebih menarik dan menyenangkan.', tags: ['Android', 'Augmented Reality (AR)', 'Unity', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/BBB.png' },
+        { category: 'Aplikasi', num: '24', name: 'VB Kasir Hotel', desc: 'merupakan aplikasi desktop sistem informasi manajemen hotel yang membantu pengelolaan data pelanggan, reservasi kamar, transaksi, dan administrasi operasional. Aplikasi ini dilengkapi dengan database sehingga seluruh proses pengelolaan hotel dapat dilakukan secara terintegrasi dan efisien.', tags: ['Desktop', 'Visual Studio 2022'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/VBH.png' },
+        { category: 'Aplikasi', num: '25', name: 'VB Kasir Restoran', desc: 'merupakan aplikasi desktop sistem informasi kasir restoran yang membantu pengelolaan menu, transaksi penjualan, data pelanggan, dan laporan penjualan. Aplikasi ini dilengkapi dengan database untuk mendukung operasional restoran secara lebih terstruktur dan efisien.', tags: ['Desktop', 'Visual Studio 2022'], type: 'Technology', img: 'assets/proyek-it/Aplikasi/VBR.png' },
+        { category: 'Game', num: '26', name: 'Pedivi Garden', desc: 'merupakan game simulasi berkebun yang menggabungkan pengelolaan pertanian dengan sentuhan budaya Indonesia. Pemain dapat menanam, merawat, memanen, dan menjual hasil kebun, sekaligus belajar mengelola keuangan dalam lingkungan yang menghadirkan bangunan khas daerah, pakaian adat, dan nuansa budaya Indonesia yang autentik.', tags: ['Unity', 'C#', 'Pengembangan Game', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Game/PediviBanner.png' },
+        { category: 'Game', num: '27', name: 'Escavia', desc: 'merupakan game Virtual Reality (VR) bertema simulasi bencana yang memberikan pengalaman interaktif dalam menghadapi berbagai bencana alam maupun nonalam. Game ini dirancang untuk meningkatkan pemahaman dan kesiapsiagaan pemain melalui simulasi yang imersif dan realistis.', tags: ['Unity', 'C#', 'Pengembangan Game', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Game/EscaviaBAnner.jpeg' },
+        { category: 'Game', num: '28', name: 'BizBreak', desc: 'merupakan game horor bertahan hidup yang mengajak pemain melarikan diri dari rumah berhantu setelah diculik oleh makhluk misterius. Pemain harus memecahkan teka-teki, menghindari ancaman, dan mencari jalan keluar untuk bertahan hidup hingga berhasil meloloskan diri.', tags: ['Unity', 'C#', 'Pengembangan Game', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Game/BizBreak.png' },
+        { category: 'Game', num: '29', name: 'Tank Battle', desc: 'merupakan game aksi bertema peperangan yang menghadirkan pertempuran antarnegara menggunakan kendaraan tempur. Pemain dituntut menyusun strategi, mengendalikan tank, dan mengalahkan lawan untuk memenangkan setiap pertempuran.', tags: ['Unity', 'C#', 'Pengembangan Game', 'Media Interaktif'], type: 'Technology', img: 'assets/proyek-it/Game/Tank Battle.png' },
+        { category: 'Foto', num: '30', name: 'Portrait Double Exposure', desc: 'Hasil editing foto portrait dengan teknik double exposure yang menggabungkan elemen visual artistik untuk menghasilkan komposisi yang unik, kreatif, dan berkarakter.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET1.png' },
+        { category: 'Foto', num: '31', name: 'Urban City Manipulation', desc: 'Manipulasi foto bertema perkotaan yang mengombinasikan efek digital, color grading, dan komposisi modern untuk menciptakan visual yang estetik dan menarik.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET2.png' },
+        { category: 'Foto', num: '32', name: 'Horror Poster Design', desc: 'Desain poster bertema horor yang menggabungkan teknik manipulasi foto, pencahayaan, dan efek visual sinematik untuk menghasilkan karya yang dramatis dan penuh atmosfer.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET3.png' },
+        { category: 'Foto', num: '33', name: 'Color Grading Restoration', desc: 'Proses photo retouching dan color grading yang mengubah tampilan foto menjadi lebih hidup melalui penyesuaian warna, pencahayaan, dan detail secara profesional.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET5.png' },
+        { category: 'Foto', num: '34', name: 'Health Awareness Poster', desc: 'Desain poster edukasi kesehatan yang menyajikan informasi mengenai pentingnya konsumsi air putih melalui tata letak yang informatif, ilustrasi visual, dan komposisi yang menarik sehingga pesan dapat disampaikan secara efektif.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET6.webp' },
+        { category: 'Foto', num: '35', name: 'Educational Campaign Poster', desc: 'Desain poster kampanye edukasi yang mengangkat pentingnya budaya membaca melalui perpaduan tipografi, ilustrasi, dan tata letak visual yang informatif, menarik, serta mudah dipahami.', tags: ['Adobe Photoshop'], type: 'Technology', img: 'assets/proyek-it/Foto/ET7.jpg' },
+        { category: 'Video', num: '36', name: 'Happy Tos Commercial Advertisement', desc: 'Video iklan komersial produk makanan ringan Happy Tos yang dikemas dengan konsep promosi kreatif melalui perpaduan motion graphics, transisi, dan visual yang menarik untuk meningkatkan daya tarik produk.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/HPT.jpg' },
+        { category: 'Video', num: '37', name: 'Amikom Promotional Advertisement', desc: 'Video promosi yang memperkenalkan lingkungan dan fasilitas Universitas Amikom dengan penyampaian visual yang menarik, informatif, dan komunikatif untuk menarik minat calon mahasiswa.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/IklanAmikom.jpg' },
+        { category: 'Video', num: '38', name: 'Kirana Short Film', desc: 'Film pendek yang mengangkat alur cerita sederhana dengan pengemasan sinematik melalui teknik editing, color grading, transisi, dan motion graphics untuk memberikan pengalaman visual yang lebih menarik.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/Kirana.jpg' },
+        { category: 'Video', num: '39', name: 'Sate Taichan Promotional Video', desc: 'Video promosi kuliner yang menampilkan produk Sate Taichan dengan pengambilan gambar sinematik, color grading, dan motion graphics untuk meningkatkan daya tarik visual sebagai media pemasaran.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/ST.jpg' },
+        { category: 'Video', num: '40', name: 'Qtela Commercial Advertisement', desc: 'Video iklan komersial produk Qtela yang dikembangkan dengan konsep visual modern, editing dinamis, serta penyampaian informasi yang efektif untuk mendukung promosi produk.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/VD1.jpg' },
+        { category: 'Video', num: '41', name: 'Goliath Cover Music Video', desc: 'Video musik cover lagu Masih Disini Masih Denganmu dari Goliath yang dipadukan dengan teknik editing, color grading, dan motion graphics untuk menghasilkan tampilan visual yang lebih menarik dan sinematik.', tags: ['Adobe Premiere Pro', 'Adobe Audition'], type: 'Technology', img: 'assets/proyek-it/Video/VD2.jpg' }
       ],
       journey: [
         {
@@ -871,6 +879,8 @@
         ? d.projects
         : d.projects.filter(p => p.category === activeCategory);
 
+      window.__currentProjects = filtered;
+
       projectList.innerHTML = filtered.map((p, i) => `
               <article class="project-card" data-idx="${i}">
                 <div class="project-thumb">
@@ -887,7 +897,6 @@
                 <div class="project-body">
                   <div class="project-body-top">
                     <span class="project-name">${p.name}</span>
-                    <div class="project-arrow">→</div>
                   </div>
                   <p class="project-desc">${p.desc}</p>
                   <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
@@ -918,6 +927,7 @@
           if (cards.length < 2) return () => {};
           
           let autoScrollTimer = setInterval(() => {
+            if (window.__isModalOpen || window.__isCarouselVisible === false) return;
             let cardWidth = cards[0].offsetWidth;
             let gap = 16;
             let maxScroll = wrap.scrollWidth - wrap.clientWidth;
@@ -1012,7 +1022,7 @@
 
             const dimmer = card.querySelector('.project-card-dimmer');
             if (dimmer) dimmer.style.setProperty('--dim', dimAlpha);
-            card.style.pointerEvents = absOffset === 0 ? 'auto' : 'none';
+            card.style.pointerEvents = 'auto';
           });
           dots.forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
         }
@@ -1041,7 +1051,7 @@
         function startAuto() {
           clearInterval(fanTimer);
           fanTimer = setInterval(() => {
-            if (!isPaused && !isDragging) goToIndex(currentIdx + 1, 1);
+            if (!isPaused && !isDragging && !window.__isModalOpen && window.__isCarouselVisible !== false) goToIndex(currentIdx + 1, 1);
           }, 1500); // Fast auto-rotation (1.5 seconds per card)
         }
         function stopAuto() { clearInterval(fanTimer); }
@@ -1134,6 +1144,7 @@
         wrap.addEventListener('pointerdown', onPointerDown);
         window.addEventListener('pointermove', onPointerMove);
         window.addEventListener('pointerup', onPointerUp);
+        window.addEventListener('pointercancel', onPointerUp);
         wrap.addEventListener('pointerenter', onEnter);
         wrap.addEventListener('pointerleave', onLeave);
         wrap.addEventListener('wheel', onWheel, { passive: false });
@@ -1156,8 +1167,9 @@
           stopAuto();
           window.removeEventListener('resize', onResize);
           wrap.removeEventListener('pointerdown', onPointerDown);
-          wrap.removeEventListener('pointermove', onPointerMove);
-          wrap.removeEventListener('pointerup', onPointerUp);
+          window.removeEventListener('pointermove', onPointerMove);
+          window.removeEventListener('pointerup', onPointerUp);
+          window.removeEventListener('pointercancel', onPointerUp);
           wrap.removeEventListener('pointerenter', onEnter);
           wrap.removeEventListener('pointerleave', onLeave);
           wrap.removeEventListener('wheel', onWheel);
@@ -1419,7 +1431,7 @@
     if (cursorRing) {
       ringX += (mouseX - ringX) * 0.2;
       ringY += (mouseY - ringY) * 0.2;
-      cursorRing.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0)`;
+      cursorRing.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0) translate(-50%, -50%)`;
     }
 
     cx += (mx - cx) * 0.08;
@@ -1546,4 +1558,74 @@
   if (isTouchDevice()) {
     // activateSpotlightAt(window.innerWidth * 0.5, window.innerHeight * 0.52);
   }
+})();
+
+/* ---------- PROJECT MODAL LOGIC ---------- */
+(function initProjectModal() {
+  const modal = document.getElementById('projectModal');
+  const backdrop = document.getElementById('projectModalBackdrop');
+  const closeBtn = document.getElementById('projectModalClose');
+  if (!modal || !backdrop || !closeBtn) return;
+
+  const modalImg = document.getElementById('projectModalImg');
+  const modalCategory = document.getElementById('projectModalCategory');
+  const modalNum = document.getElementById('projectModalNum');
+  const modalTitle = document.getElementById('projectModalTitle');
+  const modalDesc = document.getElementById('projectModalDesc');
+  const modalTags = document.getElementById('projectModalTags');
+
+  function openModal(project) {
+    if (!project) return;
+    window.__isModalOpen = true;
+    
+    // Fill data
+    modalImg.src = project.img || '';
+    modalImg.alt = project.name || '';
+    modalCategory.textContent = project.category || project.type || '';
+    modalNum.textContent = project.num || '';
+    modalTitle.textContent = project.name || '';
+    modalDesc.textContent = project.desc || '';
+    
+    // Open
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden'; // Lock scroll
+  }
+
+  function closeModal() {
+    window.__isModalOpen = false;
+    modal.classList.remove('is-open');
+    document.body.style.overflow = ''; // Restore scroll
+  }
+
+  // Event Listeners
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+
+  // Delegate click on project cards
+  document.addEventListener('click', (e) => {
+    if (e.defaultPrevented) return; // Don't open if dragged
+    const card = e.target.closest('.project-card');
+    if (card) {
+      const idx = card.getAttribute('data-idx');
+      if (idx !== null && window.__currentProjects && window.__currentProjects[idx]) {
+        openModal(window.__currentProjects[idx]);
+      }
+    }
+  });
+
+  window.__isCarouselVisible = false;
+  const carouselObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      window.__isCarouselVisible = entry.isIntersecting;
+    });
+  }, { threshold: 0.1 });
+  const _carouselWrap = document.querySelector('.projects-carousel-wrap');
+  if (_carouselWrap) carouselObserver.observe(_carouselWrap);
+
 })();
